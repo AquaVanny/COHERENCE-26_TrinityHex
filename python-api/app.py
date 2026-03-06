@@ -862,13 +862,15 @@ def v2_demo_match():
 def v2_nearby_trials():
     """
     Find trials with sites within a given radius of a patient's location.
+    Uses real-world geocoding API (Nominatim/OpenStreetMap) for coordinates.
+    
     Query params:
         patient_index (int) - index of patient in real_patients.json
         radius_miles (float) - search radius in miles (default 100)
     Returns trial list with distance info, map data, and summary stats.
     """
     try:
-        from explainer import estimate_distance, _find_city_coords, _haversine, CITY_COORDS
+        from geocoding import geocode_location, haversine_distance
         import re as _re
 
         radius = request.args.get('radius_miles', 100, type=float)
@@ -885,40 +887,31 @@ def v2_nearby_trials():
         patient_index = min(patient_index, len(patients) - 1)
         patient = patients[patient_index]
 
-        # Resolve patient location to coordinates
-        patient_loc = patient.get('location', '') or patient.get('city', '') or patient.get('state', '')
-        patient_coords = _find_city_coords(patient_loc)
+        # Build patient location string from available data
+        patient_city = patient.get('city', '')
+        patient_state = patient.get('state', '')
+        patient_location_str = patient.get('location', '')
+        
+        # Construct best location string for geocoding
+        if patient_location_str:
+            patient_loc_query = patient_location_str
+        elif patient_city and patient_state:
+            patient_loc_query = f"{patient_city}, {patient_state}"
+        elif patient_state:
+            # Use state capital as fallback
+            patient_loc_query = patient_state
+        else:
+            patient_loc_query = patient.get('region', 'United States')
 
-        # If patient has no resolvable city, try state-level mapping
+        # Geocode patient location using real API
+        patient_coords = geocode_location(patient_loc_query)
+        
         if not patient_coords:
-            state = patient.get('state', '')
-            state_city_map = {
-                'Massachusetts': 'boston', 'California': 'los angeles',
-                'New York': 'new york', 'Texas': 'houston',
-                'Florida': 'miami', 'Illinois': 'chicago',
-                'Pennsylvania': 'philadelphia', 'Ohio': 'cleveland',
-                'Michigan': 'detroit', 'Georgia': 'atlanta',
-                'Washington': 'seattle', 'Colorado': 'denver',
-                'Arizona': 'phoenix', 'Minnesota': 'minneapolis',
-                'Oregon': 'portland', 'Tennessee': 'nashville',
-                'Indiana': 'indianapolis', 'Missouri': 'kansas city',
-                'Wisconsin': 'milwaukee', 'Maryland': 'baltimore',
-                'North Carolina': 'charlotte', 'Virginia': 'richmond',
-                'Louisiana': 'new orleans', 'Kentucky': 'louisville',
-                'Utah': 'salt lake city', 'Nevada': 'las vegas',
-                'Oklahoma': 'oklahoma city',
-            }
-            mapped_city = state_city_map.get(state)
-            if mapped_city:
-                patient_coords = CITY_COORDS.get(mapped_city)
-
-        patient_city = None
-        if patient_coords:
-            # Find the city name for display
-            for city, coords in CITY_COORDS.items():
-                if coords == patient_coords:
-                    patient_city = city.title()
-                    break
+            return jsonify({
+                'error': 'Could not geocode patient location',
+                'patient_location_query': patient_loc_query,
+                'message': 'Unable to determine patient coordinates. Please check location data.'
+            }), 400
 
         nearby_trials = []
         all_trial_distances = []
@@ -934,10 +927,17 @@ def v2_nearby_trials():
 
             for site in sites:
                 site = site.strip()
-                site_coords = _find_city_coords(site)
+                if not site:
+                    continue
+                
+                # Geocode each trial site using real API
+                site_coords = geocode_location(site)
+                
                 if site_coords and patient_coords:
-                    dist = _haversine(patient_coords[0], patient_coords[1],
-                                      site_coords[0], site_coords[1])
+                    dist = haversine_distance(
+                        patient_coords[0], patient_coords[1],
+                        site_coords[0], site_coords[1]
+                    )
                     trial_sites.append({
                         'name': site,
                         'lat': site_coords[0],
@@ -948,7 +948,8 @@ def v2_nearby_trials():
                         nearest_dist = dist
                         nearest_site_name = site
                         nearest_site_coords = site_coords
-                elif site:
+                else:
+                    # Site couldn't be geocoded
                     trial_sites.append({
                         'name': site,
                         'lat': None,
@@ -982,7 +983,7 @@ def v2_nearby_trials():
         return jsonify({
             'patient_id': patient.get('patient_id'),
             'patient_index': patient_index,
-            'patient_location': patient_city or patient.get('state', 'Unknown'),
+            'patient_location': patient_loc_query,
             'patient_lat': patient_coords[0] if patient_coords else None,
             'patient_lon': patient_coords[1] if patient_coords else None,
             'radius_miles': radius,
@@ -990,7 +991,8 @@ def v2_nearby_trials():
             'nearby_count': len(nearby_trials),
             'nearby_trials': nearby_trials,
             'all_trials': all_trial_distances,
-            'summary': f"{len(nearby_trials)} of {len(trials)} trials have sites within {int(radius)} miles"
+            'summary': f"{len(nearby_trials)} of {len(trials)} trials have sites within {int(radius)} miles",
+            'geocoding': 'nominatim'  # Indicate we're using real geocoding
         })
 
     except Exception as e:
