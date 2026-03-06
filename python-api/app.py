@@ -23,15 +23,7 @@ from explainer import RankingModule
 load_dotenv()
 
 app = Flask(__name__)
-CORS(app, origins=[
-    os.getenv('FRONTEND_URL', 'http://localhost:5173'),
-    'http://localhost:5173',
-    'http://localhost:5174',
-    'http://localhost:5175',
-    'http://localhost:3000',
-    'http://127.0.0.1:5173',
-    'http://127.0.0.1:5174',
-])
+CORS(app, origins='*')
 
 # Initialize AI components — legacy
 anonymizer = PatientAnonymizer()
