@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Activity, AlertCircle, CheckCircle, FileText, TrendingUp, Users } from 'lucide-react'
 import axios from 'axios'
+import NearbyTrialsMap from './NearbyTrialsMap'
 
 interface Patient {
   patient_id: string
@@ -157,7 +158,7 @@ const AppDashboard = () => {
       <section className="glass-card hero-card">
         <h1 className="hero-title">Clinical Trial Matching Platform</h1>
         <p className="hero-sub">
-          AI-powered system matching {matchResult?.total_patients_available || 50} anonymized patient records to {matchResult?.total_trials_evaluated || 5} active clinical trials using hybrid rule-based and machine learning algorithms.
+          AI-powered system matching {matchResult?.total_patients_available || 250} anonymized patient records to {matchResult?.total_trials_evaluated || 12} active clinical trials using hybrid rule-based and machine learning algorithms with geographic proximity filtering.
         </p>
       </section>
 
@@ -374,6 +375,8 @@ const AppDashboard = () => {
           )}
         </div>
       </section>
+
+      <NearbyTrialsMap patientIndex={selectedPatientIndex} />
 
       <section className="triple-grid">
         {[

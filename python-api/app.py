@@ -866,6 +866,149 @@ def v2_demo_match():
         }), 500
 
 
+@app.route('/api/v2/nearby-trials', methods=['GET'])
+def v2_nearby_trials():
+    """
+    Find trials with sites within a given radius of a patient's location.
+    Query params:
+        patient_index (int) - index of patient in real_patients.json
+        radius_miles (float) - search radius in miles (default 100)
+    Returns trial list with distance info, map data, and summary stats.
+    """
+    try:
+        from explainer import estimate_distance, _find_city_coords, _haversine, CITY_COORDS
+        import re as _re
+
+        radius = request.args.get('radius_miles', 100, type=float)
+        patient_index = request.args.get('patient_index', 0, type=int)
+
+        patients_file = os.path.join(os.path.dirname(__file__), 'data', 'real_patients.json')
+        trials_file = os.path.join(os.path.dirname(__file__), 'data', 'sample_trials.json')
+
+        with open(patients_file, 'r') as f:
+            patients = json.load(f)
+        with open(trials_file, 'r') as f:
+            trials = json.load(f)
+
+        patient_index = min(patient_index, len(patients) - 1)
+        patient = patients[patient_index]
+
+        # Resolve patient location to coordinates
+        patient_loc = patient.get('location', '') or patient.get('city', '') or patient.get('state', '')
+        patient_coords = _find_city_coords(patient_loc)
+
+        # If patient has no resolvable city, try state-level mapping
+        if not patient_coords:
+            state = patient.get('state', '')
+            state_city_map = {
+                'Massachusetts': 'boston', 'California': 'los angeles',
+                'New York': 'new york', 'Texas': 'houston',
+                'Florida': 'miami', 'Illinois': 'chicago',
+                'Pennsylvania': 'philadelphia', 'Ohio': 'cleveland',
+                'Michigan': 'detroit', 'Georgia': 'atlanta',
+                'Washington': 'seattle', 'Colorado': 'denver',
+                'Arizona': 'phoenix', 'Minnesota': 'minneapolis',
+                'Oregon': 'portland', 'Tennessee': 'nashville',
+                'Indiana': 'indianapolis', 'Missouri': 'kansas city',
+                'Wisconsin': 'milwaukee', 'Maryland': 'baltimore',
+                'North Carolina': 'charlotte', 'Virginia': 'richmond',
+                'Louisiana': 'new orleans', 'Kentucky': 'louisville',
+                'Utah': 'salt lake city', 'Nevada': 'las vegas',
+                'Oklahoma': 'oklahoma city',
+            }
+            mapped_city = state_city_map.get(state)
+            if mapped_city:
+                patient_coords = CITY_COORDS.get(mapped_city)
+
+        patient_city = None
+        if patient_coords:
+            # Find the city name for display
+            for city, coords in CITY_COORDS.items():
+                if coords == patient_coords:
+                    patient_city = city.title()
+                    break
+
+        nearby_trials = []
+        all_trial_distances = []
+
+        for trial in trials:
+            trial_loc = trial.get('location', '')
+            sites = _re.split(r'[;,]', trial_loc)
+
+            trial_sites = []
+            nearest_dist = float('inf')
+            nearest_site_name = ''
+            nearest_site_coords = None
+
+            for site in sites:
+                site = site.strip()
+                site_coords = _find_city_coords(site)
+                if site_coords and patient_coords:
+                    dist = _haversine(patient_coords[0], patient_coords[1],
+                                      site_coords[0], site_coords[1])
+                    trial_sites.append({
+                        'name': site,
+                        'lat': site_coords[0],
+                        'lon': site_coords[1],
+                        'distance_miles': round(dist, 1)
+                    })
+                    if dist < nearest_dist:
+                        nearest_dist = dist
+                        nearest_site_name = site
+                        nearest_site_coords = site_coords
+                elif site:
+                    trial_sites.append({
+                        'name': site,
+                        'lat': None,
+                        'lon': None,
+                        'distance_miles': None
+                    })
+
+            is_nearby = nearest_dist <= radius
+            trial_entry = {
+                'trial_id': trial.get('trial_id'),
+                'title': trial.get('title'),
+                'phase': trial.get('phase'),
+                'condition': trial.get('condition'),
+                'status': trial.get('status'),
+                'location_raw': trial_loc,
+                'sites': trial_sites,
+                'nearest_site': nearest_site_name if nearest_dist < float('inf') else None,
+                'nearest_distance_miles': round(nearest_dist, 1) if nearest_dist < float('inf') else None,
+                'nearest_site_lat': nearest_site_coords[0] if nearest_site_coords else None,
+                'nearest_site_lon': nearest_site_coords[1] if nearest_site_coords else None,
+                'within_radius': is_nearby,
+            }
+            all_trial_distances.append(trial_entry)
+            if is_nearby:
+                nearby_trials.append(trial_entry)
+
+        # Sort nearby by distance
+        nearby_trials.sort(key=lambda x: x.get('nearest_distance_miles') or 9999)
+        all_trial_distances.sort(key=lambda x: x.get('nearest_distance_miles') or 9999)
+
+        return jsonify({
+            'patient_id': patient.get('patient_id'),
+            'patient_index': patient_index,
+            'patient_location': patient_city or patient.get('state', 'Unknown'),
+            'patient_lat': patient_coords[0] if patient_coords else None,
+            'patient_lon': patient_coords[1] if patient_coords else None,
+            'radius_miles': radius,
+            'total_trials': len(trials),
+            'nearby_count': len(nearby_trials),
+            'nearby_trials': nearby_trials,
+            'all_trials': all_trial_distances,
+            'summary': f"{len(nearby_trials)} of {len(trials)} trials have sites within {int(radius)} miles"
+        })
+
+    except Exception as e:
+        return jsonify({
+            'error': 'Nearby trials search failed',
+            'message': str(e),
+            'traceback': traceback.format_exc() if app.config['DEBUG'] else None
+        }), 500
+
+
 @app.route('/api/v2/patients', methods=['GET'])
 def v2_get_patients():
     """Get list of available patients (anonymized) for selection."""
