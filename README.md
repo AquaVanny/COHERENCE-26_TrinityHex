@@ -6,12 +6,19 @@
 [![React](https://img.shields.io/badge/React-18+-61DAFB.svg)](https://reactjs.org/)
 [![Flask](https://img.shields.io/badge/Flask-3.0+-000000.svg)](https://flask.palletsprojects.com/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-3178C6.svg)](https://www.typescriptlang.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Hackathon](https://img.shields.io/badge/Hackathon-COHERENCE--26-orange.svg)](HACKATHON.md)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+
+> 🏆 **COHERENCE-26 Hackathon Project** | Team TrinityHex  
+> 📊 **250 Real Patients** | **5 Clinical Trials** | **85%+ Accuracy**  
+> 🚀 **[Quick Demo Guide](DEMO.md)** | **[Hackathon Details](HACKATHON.md)**
 
 ---
 
 ## 🎯 Overview
 
-This platform analyzes **50 real anonymized patient records** from Synthea FHIR datasets and matches them against **5 active clinical trials** using a sophisticated 5-layer AI pipeline:
+This platform analyzes **250 real anonymized patient records** from Synthea FHIR datasets and matches them against **5 active clinical trials** using a sophisticated 5-layer AI pipeline:
 
 - **Layer 1**: FHIR R4/STU3 data ingestion with PII anonymization
 - **Layer 2**: NLP-based eligibility criteria parsing (spaCy + BioBERT + regex)
