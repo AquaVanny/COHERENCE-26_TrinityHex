@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Upload, User, FileText, Search, AlertCircle, CheckCircle } from 'lucide-react'
 import axios from 'axios'
+import FileUpload from './FileUpload'
 
 interface MatchResult {
   patient_id: string
@@ -13,6 +14,7 @@ const PatientMatcher = () => {
   const [matchResults, setMatchResults] = useState<MatchResult | null>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [activeTab, setActiveTab] = useState<'manual' | 'upload'>('manual')
 
   const samplePatient = {
     patient_id: "P005",
@@ -69,13 +71,33 @@ const PatientMatcher = () => {
     }
   }
 
+  const handleFileUploadSuccess = (data: any) => {
+    if (data.matching_results) {
+      // Handle upload-and-match results
+      const firstResult = data.matching_results[0]
+      if (firstResult) {
+        setMatchResults({
+          patient_id: firstResult.patient_id,
+          ranked_trials: firstResult.ranked_trials,
+          total_trials: firstResult.total_trials_evaluated
+        })
+      }
+    }
+    setError(null)
+  }
+
+  const handleFileUploadError = (errorMessage: string) => {
+    setError(errorMessage)
+    setMatchResults(null)
+  }
+
   return (
     <div className="space-y-6">
       {/* Header */}
       <div className="bg-white rounded-lg shadow p-6">
         <h1 className="text-2xl font-bold text-gray-900 mb-2">Patient Trial Matcher</h1>
         <p className="text-gray-600">
-          Upload patient data to find matching clinical trials with AI-powered analysis
+          Upload patient data files or enter data manually to find matching clinical trials with AI-powered analysis
         </p>
       </div>
 
@@ -85,43 +107,75 @@ const PatientMatcher = () => {
           <div className="p-6 border-b border-gray-200">
             <div className="flex items-center justify-between">
               <h2 className="text-lg font-semibold text-gray-900">Patient Data Input</h2>
-              <button
-                onClick={loadSampleData}
-                className="text-blue-600 hover:text-blue-700 text-sm font-medium"
-              >
-                Load Sample Data
-              </button>
+              <div className="flex space-x-2">
+                <button
+                  onClick={() => setActiveTab('manual')}
+                  className={`px-3 py-1 text-sm rounded-md ${
+                    activeTab === 'manual'
+                      ? 'bg-blue-100 text-blue-700'
+                      : 'text-gray-600 hover:text-gray-900'
+                  }`}
+                >
+                  Manual Input
+                </button>
+                <button
+                  onClick={() => setActiveTab('upload')}
+                  className={`px-3 py-1 text-sm rounded-md ${
+                    activeTab === 'upload'
+                      ? 'bg-blue-100 text-blue-700'
+                      : 'text-gray-600 hover:text-gray-900'
+                  }`}
+                >
+                  File Upload
+                </button>
+              </div>
             </div>
           </div>
           
           <div className="p-6">
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Patient Information (JSON Format)
-              </label>
-              <textarea
-                value={patientData}
-                onChange={(e) => setPatientData(e.target.value)}
-                placeholder="Enter patient data in JSON format..."
-                className="w-full h-64 p-3 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 font-mono text-sm"
+            {activeTab === 'manual' ? (
+              <>
+                <div className="mb-4 flex justify-between items-center">
+                  <label className="block text-sm font-medium text-gray-700">
+                    Patient Information (JSON Format)
+                  </label>
+                  <button
+                    onClick={loadSampleData}
+                    className="text-blue-600 hover:text-blue-700 text-sm font-medium"
+                  >
+                    Load Sample Data
+                  </button>
+                </div>
+                <textarea
+                  value={patientData}
+                  onChange={(e) => setPatientData(e.target.value)}
+                  placeholder="Enter patient data in JSON format..."
+                  className="w-full h-64 p-3 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 font-mono text-sm mb-4"
+                />
+
+                <div className="flex items-center space-x-4">
+                  <button
+                    onClick={matchPatient}
+                    disabled={loading || !patientData.trim()}
+                    className="flex items-center space-x-2 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 disabled:opacity-50"
+                  >
+                    <Search className="h-4 w-4" />
+                    <span>{loading ? 'Matching...' : 'Find Trials'}</span>
+                  </button>
+
+                  <div className="flex items-center text-sm text-gray-500">
+                    <User className="h-4 w-4 mr-1" />
+                    <span>Data will be automatically anonymized</span>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <FileUpload
+                uploadType="match"
+                onUploadSuccess={handleFileUploadSuccess}
+                onUploadError={handleFileUploadError}
               />
-            </div>
-
-            <div className="flex items-center space-x-4">
-              <button
-                onClick={matchPatient}
-                disabled={loading || !patientData.trim()}
-                className="flex items-center space-x-2 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 disabled:opacity-50"
-              >
-                <Search className="h-4 w-4" />
-                <span>{loading ? 'Matching...' : 'Find Trials'}</span>
-              </button>
-
-              <div className="flex items-center text-sm text-gray-500">
-                <User className="h-4 w-4 mr-1" />
-                <span>Data will be automatically anonymized</span>
-              </div>
-            </div>
+            )}
 
             {error && (
               <div className="mt-4 bg-red-50 border border-red-200 rounded-md p-4">

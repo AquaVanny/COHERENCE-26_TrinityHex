@@ -1,0 +1,6 @@
+patient_id,name,age,gender,location,diagnosis,medications,hba1c,glucose,weight,height,bmi
+P001,John Smith,45,male,"San Francisco, CA","Type 2 Diabetes, Hypertension","Metformin, Lisinopril",8.2,180,85,175,27.8
+P002,Sarah Johnson,32,female,"Boston, MA",Breast Cancer Stage II,Tamoxifen,,,65,165,23.9
+P003,Michael Chen,67,male,"Los Angeles, CA","Alzheimer's Disease, Depression","Donepezil, Sertraline",,,78,170,27.0
+P004,Emily Rodriguez,28,female,"Miami, FL","Asthma, Allergic Rhinitis","Albuterol, Fluticasone",,,58,160,22.7
+P005,David Wilson,55,male,"Chicago, IL","Type 2 Diabetes, Obesity","Metformin, Insulin",9.1,220,95,180,29.3

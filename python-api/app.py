@@ -5,6 +5,9 @@ import os
 from dotenv import load_dotenv
 import sys
 import traceback
+import pandas as pd
+import json
+from werkzeug.utils import secure_filename
 
 # Add models directory to path
 sys.path.append(os.path.join(os.path.dirname(__file__), 'models'))
@@ -24,6 +27,75 @@ matcher = ClinicalTrialMatcher()
 # Configuration
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'your-secret-key-here')
 app.config['DEBUG'] = os.getenv('FLASK_DEBUG', 'True').lower() == 'true'
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max file size
+app.config['UPLOAD_FOLDER'] = os.path.join(os.path.dirname(__file__), 'uploads')
+
+# Ensure upload directory exists
+os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
+
+# Allowed file extensions
+ALLOWED_EXTENSIONS = {'json', 'csv'}
+
+def allowed_file(filename):
+    """Check if file extension is allowed."""
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+def parse_csv_to_patients(csv_file_path):
+    """Parse CSV file to patient data format."""
+    try:
+        df = pd.read_csv(csv_file_path)
+        patients = []
+        
+        for _, row in df.iterrows():
+            patient = {}
+            
+            # Map common CSV column names to our patient data format
+            column_mapping = {
+                'patient_id': ['patient_id', 'id', 'patient_number', 'mrn'],
+                'name': ['name', 'patient_name', 'full_name'],
+                'age': ['age', 'patient_age'],
+                'gender': ['gender', 'sex'],
+                'location': ['location', 'address', 'city', 'state'],
+                'diagnosis': ['diagnosis', 'condition', 'medical_condition', 'diagnoses'],
+                'medications': ['medications', 'drugs', 'medication_list'],
+                'diagnosis_date': ['diagnosis_date', 'date_diagnosed', 'onset_date']
+            }
+            
+            for field, possible_columns in column_mapping.items():
+                for col in possible_columns:
+                    if col in df.columns and not pd.isna(row.get(col)):
+                        value = row[col]
+                        if field in ['diagnosis', 'medications'] and isinstance(value, str):
+                            # Split comma-separated values
+                            patient[field] = [item.strip() for item in value.split(',')]
+                        else:
+                            patient[field] = value
+                        break
+            
+            # Add any additional columns as lab_results or vital_signs
+            lab_results = {}
+            vital_signs = {}
+            
+            for col in df.columns:
+                if col not in [item for sublist in column_mapping.values() for item in sublist]:
+                    value = row[col]
+                    if not pd.isna(value):
+                        if any(keyword in col.lower() for keyword in ['lab', 'test', 'result', 'level']):
+                            lab_results[col] = value
+                        elif any(keyword in col.lower() for keyword in ['vital', 'bp', 'pressure', 'weight', 'height', 'bmi']):
+                            vital_signs[col] = value
+            
+            if lab_results:
+                patient['lab_results'] = lab_results
+            if vital_signs:
+                patient['vital_signs'] = vital_signs
+                
+            patients.append(patient)
+        
+        return patients
+    except Exception as e:
+        raise ValueError(f"Error parsing CSV file: {str(e)}")
 
 @app.route('/api/health', methods=['GET'])
 def health_check():
@@ -163,6 +235,165 @@ def calculate_eligibility_score():
     except Exception as e:
         return jsonify({
             'error': 'Score calculation failed',
+            'message': str(e),
+            'traceback': traceback.format_exc() if app.config['DEBUG'] else None
+        }), 500
+
+@app.route('/api/upload-patients', methods=['POST'])
+def upload_patient_file():
+    """Upload and process patient data from JSON or CSV file."""
+    try:
+        if 'file' not in request.files:
+            return jsonify({'error': 'No file provided'}), 400
+        
+        file = request.files['file']
+        
+        if file.filename == '':
+            return jsonify({'error': 'No file selected'}), 400
+        
+        if not allowed_file(file.filename):
+            return jsonify({'error': 'File type not allowed. Please upload JSON or CSV files only.'}), 400
+        
+        # Save uploaded file
+        filename = secure_filename(file.filename)
+        file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        file.save(file_path)
+        
+        try:
+            # Parse file based on extension
+            file_ext = filename.rsplit('.', 1)[1].lower()
+            
+            if file_ext == 'json':
+                with open(file_path, 'r') as f:
+                    data = json.load(f)
+                    # Handle both single patient object and array of patients
+                    if isinstance(data, list):
+                        patients = data
+                    else:
+                        patients = [data]
+            
+            elif file_ext == 'csv':
+                patients = parse_csv_to_patients(file_path)
+            
+            # Anonymize all patients
+            anonymized_patients = []
+            for patient in patients:
+                anonymized_patient = anonymizer.anonymize_patient_record(patient)
+                anonymized_patients.append(anonymized_patient)
+            
+            # Clean up uploaded file
+            os.remove(file_path)
+            
+            return jsonify({
+                'message': 'File uploaded and processed successfully',
+                'total_patients': len(anonymized_patients),
+                'anonymized_patients': anonymized_patients,
+                'file_info': {
+                    'filename': filename,
+                    'file_type': file_ext,
+                    'processed_at': datetime.now().isoformat()
+                }
+            })
+            
+        except Exception as parse_error:
+            # Clean up file on error
+            if os.path.exists(file_path):
+                os.remove(file_path)
+            return jsonify({
+                'error': 'Error processing file',
+                'message': str(parse_error)
+            }), 400
+            
+    except Exception as e:
+        return jsonify({
+            'error': 'File upload failed',
+            'message': str(e),
+            'traceback': traceback.format_exc() if app.config['DEBUG'] else None
+        }), 500
+
+@app.route('/api/upload-and-match', methods=['POST'])
+def upload_and_match_patients():
+    """Upload patient file and immediately match to trials."""
+    try:
+        if 'file' not in request.files:
+            return jsonify({'error': 'No file provided'}), 400
+        
+        file = request.files['file']
+        
+        if file.filename == '':
+            return jsonify({'error': 'No file selected'}), 400
+        
+        if not allowed_file(file.filename):
+            return jsonify({'error': 'File type not allowed. Please upload JSON or CSV files only.'}), 400
+        
+        # Save uploaded file
+        filename = secure_filename(file.filename)
+        file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        file.save(file_path)
+        
+        try:
+            # Parse file based on extension
+            file_ext = filename.rsplit('.', 1)[1].lower()
+            
+            if file_ext == 'json':
+                with open(file_path, 'r') as f:
+                    data = json.load(f)
+                    if isinstance(data, list):
+                        patients = data
+                    else:
+                        patients = [data]
+            
+            elif file_ext == 'csv':
+                patients = parse_csv_to_patients(file_path)
+            
+            # Load sample trials for matching
+            trials_file = os.path.join(os.path.dirname(__file__), 'data', 'sample_trials.json')
+            with open(trials_file, 'r') as f:
+                trials = json.load(f)
+            
+            # Process each patient
+            results = []
+            for patient in patients:
+                # Anonymize patient
+                anonymized_patient = anonymizer.anonymize_patient_record(patient)
+                
+                # Match to trials
+                ranked_trials = matcher.rank_trials_for_patient(anonymized_patient, trials)
+                
+                results.append({
+                    'patient_id': anonymized_patient.get('patient_id'),
+                    'original_patient_id': patient.get('patient_id', 'Unknown'),
+                    'anonymized_patient': anonymized_patient,
+                    'ranked_trials': ranked_trials[:5],  # Top 5 matches
+                    'total_trials_evaluated': len(trials)
+                })
+            
+            # Clean up uploaded file
+            os.remove(file_path)
+            
+            return jsonify({
+                'message': 'File uploaded and matching completed successfully',
+                'total_patients': len(results),
+                'matching_results': results,
+                'file_info': {
+                    'filename': filename,
+                    'file_type': file_ext,
+                    'processed_at': datetime.now().isoformat()
+                }
+            })
+            
+        except Exception as parse_error:
+            # Clean up file on error
+            if os.path.exists(file_path):
+                os.remove(file_path)
+            return jsonify({
+                'error': 'Error processing file',
+                'message': str(parse_error)
+            }), 400
+            
+    except Exception as e:
+        return jsonify({
+            'error': 'File upload and matching failed',
             'message': str(e),
             'traceback': traceback.format_exc() if app.config['DEBUG'] else None
         }), 500

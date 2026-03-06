@@ -72,6 +72,10 @@ npm run dev
 - `GET /api/demo-match` - Run demo matching
 - `GET /api/sample-data` - Get sample datasets
 
+### File Upload Endpoints
+- `POST /api/upload-patients` - Upload and process JSON/CSV patient files
+- `POST /api/upload-and-match` - Upload patient files and immediately match to trials
+
 ## 📋 Demo Scenarios
 
 ### Scenario 1: Diabetes Patient Matching
@@ -113,6 +117,12 @@ npm run dev
 - Detailed trial information
 
 ## 🔬 Technical Implementation
+
+### File Upload & Processing
+- **JSON/CSV Support** - Upload patient data in multiple formats
+- **Drag & Drop Interface** - Modern file upload with validation
+- **Automatic Parsing** - Smart column mapping for CSV files
+- **Batch Processing** - Handle multiple patients simultaneously
 
 ### Machine Learning Components
 - **Scikit-learn** for classification and similarity
