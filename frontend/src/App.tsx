@@ -1,21 +1,26 @@
-import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Dashboard from './components/Dashboard'
-import PatientMatcher from './components/PatientMatcher'
-import TrialExplorer from './components/TrialExplorer'
-import Navigation from './components/Navigation'
-import './App.css'
+import AppDashboard from './components/AppDashboard'
+import AppPatientMatcher from './components/AppPatientMatcher'
+import AppTrialExplorer from './components/AppTrialExplorer'
+import AppNavigation from './components/AppNavigation'
 
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-gray-50">
-        <Navigation />
-        <main className="container mx-auto px-4 py-8">
+      <div className="app-shell">
+        <AppNavigation />
+        <div className="app-background">
+          <div className="orb orb-1"></div>
+          <div className="orb orb-2"></div>
+          <div className="orb orb-3"></div>
+          <div className="orb orb-4"></div>
+          <div className="grid-overlay"></div>
+        </div>
+        <main className="app-main">
           <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/matcher" element={<PatientMatcher />} />
-            <Route path="/trials" element={<TrialExplorer />} />
+            <Route path="/" element={<AppDashboard />} />
+            <Route path="/matcher" element={<AppPatientMatcher />} />
+            <Route path="/trials" element={<AppTrialExplorer />} />
           </Routes>
         </main>
       </div>

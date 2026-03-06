@@ -112,14 +112,14 @@ const FileUpload = ({ onUploadSuccess, onUploadError, uploadType = 'process' }: 
   }
 
   return (
-    <div className="space-y-4">
+    <div className="section-stack">
       {/* Upload Area */}
       <div
-        className={`border-2 border-dashed rounded-lg p-8 text-center transition-colors ${
+        className={`rounded-[12px] border-2 border-dashed p-8 text-center transition-colors ${
           isDragging
-            ? 'border-blue-500 bg-blue-50'
-            : 'border-gray-300 hover:border-gray-400'
-        } ${uploading ? 'opacity-50 pointer-events-none' : ''}`}
+            ? 'border-[rgba(96,165,250,0.45)] bg-[rgba(96,165,250,0.08)]'
+            : 'border-white/15 bg-[rgba(8,14,30,0.35)] hover:border-white/25'
+        } ${uploading ? 'pointer-events-none opacity-50' : ''}`}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
@@ -132,29 +132,30 @@ const FileUpload = ({ onUploadSuccess, onUploadError, uploadType = 'process' }: 
           className="hidden"
         />
         
-        <div className="space-y-4">
+        <div className="section-stack">
           <div className="flex justify-center">
-            <Upload className={`h-12 w-12 ${isDragging ? 'text-blue-500' : 'text-gray-400'}`} />
+            <Upload className={`h-12 w-12 ${isDragging ? 'text-[var(--blue)]' : 'text-slate-400/80'}`} />
           </div>
           
           <div>
-            <h3 className="text-lg font-medium text-gray-900">
+            <h3 className="text-lg font-medium text-white">
               {uploadType === 'match' ? 'Upload & Match Patients' : 'Upload Patient Data'}
             </h3>
-            <p className="text-sm text-gray-600 mt-1">
+            <p className="mt-1 text-sm muted-text">
               Drag and drop your JSON or CSV file here, or click to browse
             </p>
           </div>
           
           <button
+            type="button"
             onClick={() => fileInputRef.current?.click()}
             disabled={uploading}
-            className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 disabled:opacity-50"
+            className="soft-button mx-auto"
           >
             {uploading ? 'Uploading...' : 'Choose File'}
           </button>
           
-          <div className="text-xs text-gray-500">
+          <div className="text-xs muted-text">
             Supported formats: JSON, CSV • Max size: 16MB
           </div>
         </div>
@@ -162,10 +163,10 @@ const FileUpload = ({ onUploadSuccess, onUploadError, uploadType = 'process' }: 
 
       {/* Loading State */}
       {uploading && (
-        <div className="bg-blue-50 border border-blue-200 rounded-md p-4">
-          <div className="flex items-center">
-            <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-blue-600 mr-3"></div>
-            <span className="text-blue-700">
+        <div className="rounded-[12px] border border-[rgba(96,165,250,0.2)] bg-[rgba(96,165,250,0.1)] p-4">
+          <div className="flex items-center gap-3 text-sm" style={{ color: 'var(--blue)' }}>
+            <div className="h-5 w-5 animate-spin rounded-full border-b-2 border-current"></div>
+            <span>
               {uploadType === 'match' ? 'Processing file and matching to trials...' : 'Processing and anonymizing patient data...'}
             </span>
           </div>
@@ -174,16 +175,17 @@ const FileUpload = ({ onUploadSuccess, onUploadError, uploadType = 'process' }: 
 
       {/* Error State */}
       {error && (
-        <div className="bg-red-50 border border-red-200 rounded-md p-4">
+        <div className="rounded-[12px] border border-red-400/20 bg-red-500/10 p-4">
           <div className="flex items-start">
-            <AlertCircle className="h-5 w-5 text-red-400 mr-3 mt-0.5" />
+            <AlertCircle className="mr-3 mt-0.5 h-5 w-5 text-red-300" />
             <div className="flex-1">
-              <h4 className="text-red-800 font-medium">Upload Failed</h4>
-              <p className="text-red-700 text-sm mt-1">{error}</p>
+              <h4 className="font-medium text-red-200">Upload Failed</h4>
+              <p className="mt-1 text-sm text-red-200/90">{error}</p>
             </div>
             <button
+              type="button"
               onClick={clearResults}
-              className="text-red-400 hover:text-red-600"
+              className="text-red-300 hover:text-red-200"
             >
               <X className="h-4 w-4" />
             </button>
@@ -193,14 +195,14 @@ const FileUpload = ({ onUploadSuccess, onUploadError, uploadType = 'process' }: 
 
       {/* Success State */}
       {uploadResult && (
-        <div className="bg-green-50 border border-green-200 rounded-md p-4">
+        <div className="rounded-[12px] border border-[rgba(52,211,153,0.2)] bg-[rgba(52,211,153,0.08)] p-4">
           <div className="flex items-start">
-            <CheckCircle className="h-5 w-5 text-green-400 mr-3 mt-0.5" />
+            <CheckCircle className="mr-3 mt-0.5 h-5 w-5 text-green-300" />
             <div className="flex-1">
-              <h4 className="text-green-800 font-medium">Upload Successful</h4>
-              <div className="text-green-700 text-sm mt-1 space-y-1">
+              <h4 className="font-medium text-green-200">Upload Successful</h4>
+              <div className="mt-1 space-y-1 text-sm text-green-200/90">
                 <p>{uploadResult.message}</p>
-                <div className="flex items-center space-x-4 text-xs">
+                <div className="flex flex-wrap items-center gap-4 text-xs">
                   <span className="flex items-center">
                     <File className="h-3 w-3 mr-1" />
                     {uploadResult.file_info.filename}
@@ -215,8 +217,9 @@ const FileUpload = ({ onUploadSuccess, onUploadError, uploadType = 'process' }: 
               </div>
             </div>
             <button
+              type="button"
               onClick={clearResults}
-              className="text-green-400 hover:text-green-600"
+              className="text-green-300 hover:text-green-200"
             >
               <X className="h-4 w-4" />
             </button>
@@ -225,12 +228,12 @@ const FileUpload = ({ onUploadSuccess, onUploadError, uploadType = 'process' }: 
       )}
 
       {/* File Format Help */}
-      <div className="bg-gray-50 rounded-md p-4">
-        <h4 className="text-sm font-medium text-gray-900 mb-2">Supported File Formats</h4>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-gray-600">
+      <div className="rounded-[12px] border border-white/10 bg-[rgba(8,14,30,0.35)] p-4">
+        <h4 className="mb-2 text-sm font-medium text-white">Supported File Formats</h4>
+        <div className="grid grid-cols-1 gap-4 text-xs muted-text md:grid-cols-2">
           <div>
-            <p className="font-medium mb-1">JSON Format:</p>
-            <pre className="bg-white p-2 rounded border text-xs overflow-x-auto">
+            <p className="mb-1 font-medium text-slate-200">JSON Format:</p>
+            <pre className="overflow-x-auto rounded border border-white/10 bg-[rgba(8,14,30,0.6)] p-2 text-xs text-slate-300">
 {`{
   "patient_id": "P001",
   "name": "John Doe",
@@ -242,8 +245,8 @@ const FileUpload = ({ onUploadSuccess, onUploadError, uploadType = 'process' }: 
             </pre>
           </div>
           <div>
-            <p className="font-medium mb-1">CSV Format:</p>
-            <pre className="bg-white p-2 rounded border text-xs overflow-x-auto">
+            <p className="mb-1 font-medium text-slate-200">CSV Format:</p>
+            <pre className="overflow-x-auto rounded border border-white/10 bg-[rgba(8,14,30,0.6)] p-2 text-xs text-slate-300">
 {`patient_id,name,age,gender,diagnosis
 P001,John Doe,45,male,Diabetes
 P002,Jane Smith,32,female,Cancer`}
