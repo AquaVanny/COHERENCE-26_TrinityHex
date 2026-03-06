@@ -85,7 +85,7 @@ const FileUpload = ({ onUploadSuccess, onUploadError, uploadType = 'process' }: 
     formData.append('file', file)
 
     try {
-      const endpoint = uploadType === 'match' ? '/api/upload-and-match' : '/api/upload-patients'
+      const endpoint = uploadType === 'match' ? '/api/v2/upload-and-match' : '/api/v2/ingest'
       const response = await axios.post(`http://localhost:5000${endpoint}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',

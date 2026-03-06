@@ -14,15 +14,37 @@ sys.path.append(os.path.join(os.path.dirname(__file__), 'models'))
 
 from patient_anonymizer import PatientAnonymizer
 from trial_matcher import ClinicalTrialMatcher
+from fhir_parser import FHIRParser
+from anonymizer import EnhancedAnonymizer
+from criteria_parser import CriteriaParser
+from matching_engine import MatchingEngine
+from explainer import RankingModule
 
 load_dotenv()
 
 app = Flask(__name__)
-CORS(app, origins=os.getenv('FRONTEND_URL', 'http://localhost:5173'))
+CORS(app, origins=[
+    os.getenv('FRONTEND_URL', 'http://localhost:5173'),
+    'http://localhost:5173',
+    'http://localhost:5174',
+    'http://localhost:5175',
+    'http://localhost:3000',
+    'http://127.0.0.1:5173',
+    'http://127.0.0.1:5174',
+])
 
-# Initialize AI components
+# Initialize AI components — legacy
 anonymizer = PatientAnonymizer()
 matcher = ClinicalTrialMatcher()
+
+# Initialize new pipeline components (Layers 1-4)
+fhir_parser = FHIRParser()
+enhanced_anonymizer = EnhancedAnonymizer()
+criteria_parser = CriteriaParser()
+matching_engine = MatchingEngine()
+ranking_module = RankingModule()
+# Wire SHAP explainer to the ML model
+ranking_module.set_ml_model(matching_engine.ml_scorer.model)
 
 # Configuration
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'your-secret-key-here')
@@ -477,6 +499,443 @@ def demo_matching():
             'message': str(e),
             'traceback': traceback.format_exc() if app.config['DEBUG'] else None
         }), 500
+
+##############################################################################
+# ── V2 API ENDPOINTS (Layers 1-4 Pipeline) ─────────────────────────────────
+##############################################################################
+
+@app.route('/api/v2/ingest', methods=['POST'])
+def v2_ingest():
+    """
+    Layer 1 — Unified data ingestion endpoint.
+    Accepts FHIR R4 JSON bundles, flat JSON patient records, or CSV files.
+    Anonymizes using Presidio-based PII stripping with audit log.
+    """
+    try:
+        # ── File upload path ──────────────────────────────────────
+        if 'file' in request.files:
+            file = request.files['file']
+            if file.filename == '':
+                return jsonify({'error': 'No file selected'}), 400
+
+            filename = secure_filename(file.filename)
+            file_ext = filename.rsplit('.', 1)[1].lower() if '.' in filename else ''
+            if file_ext not in ('json', 'csv'):
+                return jsonify({'error': 'Unsupported file type. Use JSON or CSV.'}), 400
+
+            file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            file.save(file_path)
+
+            try:
+                if file_ext == 'json':
+                    with open(file_path, 'r') as f:
+                        data = json.load(f)
+
+                    # Auto-detect FHIR bundle vs flat patient(s)
+                    if isinstance(data, dict) and data.get('resourceType') == 'Bundle':
+                        patients = [fhir_parser.parse_bundle(data)]
+                    elif isinstance(data, list):
+                        patients = []
+                        for item in data:
+                            if isinstance(item, dict) and item.get('resourceType') == 'Bundle':
+                                patients.append(fhir_parser.parse_bundle(item))
+                            else:
+                                patients.append(item)
+                    else:
+                        patients = [data]
+
+                elif file_ext == 'csv':
+                    patients = parse_csv_to_patients(file_path)
+
+                os.remove(file_path)
+
+            except Exception as parse_err:
+                if os.path.exists(file_path):
+                    os.remove(file_path)
+                return jsonify({'error': 'File parse error', 'message': str(parse_err)}), 400
+
+        # ── JSON body path ────────────────────────────────────────
+        else:
+            data = request.get_json()
+            if not data:
+                return jsonify({'error': 'No data provided. Send JSON body or file upload.'}), 400
+
+            if isinstance(data, dict) and data.get('resourceType') == 'Bundle':
+                patients = [fhir_parser.parse_bundle(data)]
+            elif isinstance(data, list):
+                patients = []
+                for item in data:
+                    if isinstance(item, dict) and item.get('resourceType') == 'Bundle':
+                        patients.append(fhir_parser.parse_bundle(item))
+                    else:
+                        patients.append(item)
+            else:
+                patients = [data]
+
+        # ── Anonymize all patients ────────────────────────────────
+        anonymized = []
+        audit_logs = []
+        for patient in patients:
+            anon = enhanced_anonymizer.anonymize(patient)
+            audit = enhanced_anonymizer.get_audit_log()
+            validation = enhanced_anonymizer.validate(patient, anon)
+            anonymized.append({
+                'anonymized_patient': anon,
+                'validation': validation
+            })
+            audit_logs.extend(audit)
+
+        return jsonify({
+            'message': 'Ingestion and anonymization complete',
+            'total_patients': len(anonymized),
+            'patients': anonymized,
+            'audit_log': audit_logs,
+            'timestamp': datetime.now().isoformat()
+        })
+
+    except Exception as e:
+        return jsonify({
+            'error': 'Ingestion failed',
+            'message': str(e),
+            'traceback': traceback.format_exc() if app.config['DEBUG'] else None
+        }), 500
+
+
+@app.route('/api/v2/parse-criteria', methods=['POST'])
+def v2_parse_criteria():
+    """
+    Layer 2 — Parse eligibility criteria text into structured JSON.
+    Uses spaCy + BioBERT + regex heuristics.
+    """
+    try:
+        data = request.get_json()
+        criteria_text = data.get('criteria_text', '')
+        if not criteria_text:
+            return jsonify({'error': 'No criteria_text provided'}), 400
+
+        parsed = criteria_parser.parse(criteria_text)
+
+        return jsonify({
+            'parsed_criteria': parsed,
+            'timestamp': datetime.now().isoformat()
+        })
+
+    except Exception as e:
+        return jsonify({
+            'error': 'Criteria parsing failed',
+            'message': str(e),
+            'traceback': traceback.format_exc() if app.config['DEBUG'] else None
+        }), 500
+
+
+@app.route('/api/v2/match', methods=['POST'])
+def v2_match():
+    """
+    Layer 3+4 — Full pipeline: ingest → anonymize → parse criteria → match → rank → explain.
+    Accepts patient_data (or raw FHIR bundle) + optional trials_data.
+    If trials_data is omitted, uses the built-in sample trials.
+    """
+    try:
+        data = request.get_json()
+        if not data:
+            return jsonify({'error': 'No data provided'}), 400
+
+        patient_data = data.get('patient_data', {})
+        trials_data = data.get('trials_data', None)
+
+        if not patient_data:
+            return jsonify({'error': 'No patient_data provided'}), 400
+
+        # Auto-detect FHIR bundle
+        if isinstance(patient_data, dict) and patient_data.get('resourceType') == 'Bundle':
+            patient_data = fhir_parser.parse_bundle(patient_data)
+
+        # Anonymize
+        anonymized_patient = enhanced_anonymizer.anonymize(patient_data)
+        audit_log = enhanced_anonymizer.get_audit_log()
+
+        # Load trials if not provided
+        if not trials_data:
+            trials_file = os.path.join(os.path.dirname(__file__), 'data', 'sample_trials.json')
+            with open(trials_file, 'r') as f:
+                trials_data = json.load(f)
+
+        # Match (Layer 3)
+        raw_results = matching_engine.match_all_trials(
+            anonymized_patient, trials_data, criteria_parser
+        )
+
+        # Rank and explain (Layer 4)
+        explained_results = ranking_module.rank_and_explain(raw_results, patient_data)
+
+        return jsonify({
+            'patient_id': anonymized_patient.get('patient_id'),
+            'anonymized_patient': anonymized_patient,
+            'total_trials_evaluated': len(trials_data),
+            'ranked_matches': explained_results,
+            'audit_log': audit_log,
+            'timestamp': datetime.now().isoformat()
+        })
+
+    except Exception as e:
+        return jsonify({
+            'error': 'Matching failed',
+            'message': str(e),
+            'traceback': traceback.format_exc() if app.config['DEBUG'] else None
+        }), 500
+
+
+@app.route('/api/v2/upload-and-match', methods=['POST'])
+def v2_upload_and_match():
+    """
+    Layer 1-4 — Upload file → ingest → anonymize → match → rank → explain.
+    Supports FHIR R4 bundles, flat JSON, and CSV.
+    """
+    try:
+        if 'file' not in request.files:
+            return jsonify({'error': 'No file provided'}), 400
+
+        file = request.files['file']
+        if file.filename == '':
+            return jsonify({'error': 'No file selected'}), 400
+
+        filename = secure_filename(file.filename)
+        file_ext = filename.rsplit('.', 1)[1].lower() if '.' in filename else ''
+        if file_ext not in ('json', 'csv'):
+            return jsonify({'error': 'Unsupported file type. Use JSON or CSV.'}), 400
+
+        file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        file.save(file_path)
+
+        try:
+            if file_ext == 'json':
+                with open(file_path, 'r') as f:
+                    data = json.load(f)
+                if isinstance(data, dict) and data.get('resourceType') == 'Bundle':
+                    patients = [fhir_parser.parse_bundle(data)]
+                elif isinstance(data, list):
+                    patients = []
+                    for item in data:
+                        if isinstance(item, dict) and item.get('resourceType') == 'Bundle':
+                            patients.append(fhir_parser.parse_bundle(item))
+                        else:
+                            patients.append(item)
+                else:
+                    patients = [data]
+            elif file_ext == 'csv':
+                patients = parse_csv_to_patients(file_path)
+
+            os.remove(file_path)
+        except Exception as parse_err:
+            if os.path.exists(file_path):
+                os.remove(file_path)
+            return jsonify({'error': 'File parse error', 'message': str(parse_err)}), 400
+
+        # Load trials
+        trials_file = os.path.join(os.path.dirname(__file__), 'data', 'sample_trials.json')
+        with open(trials_file, 'r') as f:
+            trials_data = json.load(f)
+
+        # Process each patient through the full pipeline
+        all_results = []
+        for patient in patients:
+            anonymized = enhanced_anonymizer.anonymize(patient)
+            audit = enhanced_anonymizer.get_audit_log()
+
+            raw_matches = matching_engine.match_all_trials(
+                anonymized, trials_data, criteria_parser
+            )
+            explained = ranking_module.rank_and_explain(raw_matches, patient)
+
+            all_results.append({
+                'patient_id': anonymized.get('patient_id'),
+                'original_patient_id': patient.get('patient_id', 'Unknown'),
+                'anonymized_patient': anonymized,
+                'ranked_matches': explained,
+                'total_trials_evaluated': len(trials_data),
+                'audit_log': audit
+            })
+
+        return jsonify({
+            'message': 'File processed and matching complete',
+            'total_patients': len(all_results),
+            'matching_results': all_results,
+            'file_info': {
+                'filename': filename,
+                'file_type': file_ext,
+                'processed_at': datetime.now().isoformat()
+            }
+        })
+
+    except Exception as e:
+        return jsonify({
+            'error': 'Upload and match failed',
+            'message': str(e),
+            'traceback': traceback.format_exc() if app.config['DEBUG'] else None
+        }), 500
+
+
+@app.route('/api/v2/ingest-fhir-directory', methods=['POST'])
+def v2_ingest_fhir_directory():
+    """
+    Batch ingest: parse all FHIR bundle files from a server-side directory.
+    Body: { "directory": "path/to/fhir/bundles", "limit": 10 }
+    """
+    try:
+        data = request.get_json()
+        directory = data.get('directory', '')
+        limit = data.get('limit', None)
+
+        if not directory or not os.path.isdir(directory):
+            return jsonify({'error': f'Directory not found: {directory}'}), 400
+
+        patients = fhir_parser.parse_bundle_directory(directory, limit=limit)
+
+        anonymized = []
+        audit_logs = []
+        for patient in patients:
+            anon = enhanced_anonymizer.anonymize(patient)
+            audit = enhanced_anonymizer.get_audit_log()
+            anonymized.append(anon)
+            audit_logs.extend(audit)
+
+        return jsonify({
+            'message': f'Ingested {len(anonymized)} patients from {directory}',
+            'total_patients': len(anonymized),
+            'patients': anonymized,
+            'audit_log_sample': audit_logs[:20],
+            'timestamp': datetime.now().isoformat()
+        })
+
+    except Exception as e:
+        return jsonify({
+            'error': 'FHIR directory ingestion failed',
+            'message': str(e),
+            'traceback': traceback.format_exc() if app.config['DEBUG'] else None
+        }), 500
+
+
+@app.route('/api/v2/demo-match', methods=['GET'])
+def v2_demo_match():
+    """
+    Run matching pipeline on a real patient from the ingested dataset.
+    Query param: patient_index (default: random selection)
+    """
+    try:
+        # Use real ingested patients
+        patients_file = os.path.join(os.path.dirname(__file__), 'data', 'real_patients.json')
+        trials_file = os.path.join(os.path.dirname(__file__), 'data', 'sample_trials.json')
+
+        with open(patients_file, 'r') as f:
+            patients = json.load(f)
+        with open(trials_file, 'r') as f:
+            trials = json.load(f)
+
+        if not patients or not trials:
+            return jsonify({'error': 'No patient data available'}), 400
+
+        # Get patient index from query param or select randomly
+        patient_index = request.args.get('patient_index', type=int)
+        if patient_index is None:
+            import random
+            patient_index = random.randint(0, len(patients) - 1)
+        else:
+            patient_index = min(patient_index, len(patients) - 1)
+
+        patient = patients[patient_index]
+        
+        # Patient is already anonymized from ingestion
+        raw_matches = matching_engine.match_all_trials(patient, trials, criteria_parser)
+        explained = ranking_module.rank_and_explain(raw_matches, patient)
+
+        return jsonify({
+            'patient': patient,
+            'patient_index': patient_index,
+            'total_patients_available': len(patients),
+            'total_trials_evaluated': len(trials),
+            'top_matches': explained[:3],
+            'all_matches': explained,
+            'timestamp': datetime.now().isoformat()
+        })
+
+    except Exception as e:
+        return jsonify({
+            'error': 'Demo matching failed',
+            'message': str(e),
+            'traceback': traceback.format_exc() if app.config['DEBUG'] else None
+        }), 500
+
+
+@app.route('/api/v2/patients', methods=['GET'])
+def v2_get_patients():
+    """Get list of available patients (anonymized) for selection."""
+    try:
+        patients_file = os.path.join(os.path.dirname(__file__), 'data', 'real_patients.json')
+        with open(patients_file, 'r') as f:
+            patients = json.load(f)
+        
+        # Return summary info only
+        patient_list = []
+        for idx, p in enumerate(patients):
+            patient_list.append({
+                'index': idx,
+                'patient_id': p.get('patient_id'),
+                'age_range': p.get('age_range'),
+                'gender': p.get('gender'),
+                'region': p.get('region'),
+                'diagnosis_count': len(p.get('diagnosis', [])),
+                'medication_count': len(p.get('medications', []))
+            })
+        
+        return jsonify({
+            'total_patients': len(patient_list),
+            'patients': patient_list
+        })
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/api/v2/pipeline-info', methods=['GET'])
+def v2_pipeline_info():
+    """Return information about the active pipeline components."""
+    try:
+        from anonymizer import PRESIDIO_AVAILABLE
+        from criteria_parser import SPACY_AVAILABLE, TRANSFORMERS_AVAILABLE
+        from matching_engine import XGBOOST_AVAILABLE
+
+        return jsonify({
+            'pipeline_version': '2.0',
+            'layers': {
+                'layer1_ingestion': {
+                    'fhir_parser': True,
+                    'csv_parser': True,
+                    'presidio_anonymizer': PRESIDIO_AVAILABLE,
+                    'audit_logging': True
+                },
+                'layer2_nlp_parser': {
+                    'spacy': SPACY_AVAILABLE,
+                    'biobert': TRANSFORMERS_AVAILABLE,
+                    'regex_heuristics': True
+                },
+                'layer3_matching': {
+                    'rule_engine': True,
+                    'xgboost_scorer': XGBOOST_AVAILABLE,
+                    'score_fusion': True,
+                    'rule_weight': 0.6,
+                    'ml_weight': 0.4
+                },
+                'layer4_explainer': {
+                    'rule_explanations': True,
+                    'shap_available': True,
+                    'geographic_distance': True,
+                    'confidence_tiers': True
+                }
+            },
+            'timestamp': datetime.now().isoformat()
+        })
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
 
 @app.errorhandler(404)
 def not_found(error):

@@ -1,0 +1,2102 @@
+[
+  {
+    "timestamp": "2026-03-06T17:41:07.248801Z",
+    "patient_id": "b0a06ead-cc42-aa48-dad6-841d4aa679fa",
+    "field": "patient_id",
+    "action": "hashed",
+    "detail": "Original ID replaced with ANON_AD0ADF5A865D"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.248801Z",
+    "patient_id": "b0a06ead-cc42-aa48-dad6-841d4aa679fa",
+    "field": "name",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.248801Z",
+    "patient_id": "b0a06ead-cc42-aa48-dad6-841d4aa679fa",
+    "field": "zip_code",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.248801Z",
+    "patient_id": "b0a06ead-cc42-aa48-dad6-841d4aa679fa",
+    "field": "age",
+    "action": "bucketed",
+    "detail": "49 \u2192 40-49"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.248801Z",
+    "patient_id": "b0a06ead-cc42-aa48-dad6-841d4aa679fa",
+    "field": "location",
+    "action": "generalized",
+    "detail": "Location generalized to region"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.248801Z",
+    "patient_id": "b0a06ead-cc42-aa48-dad6-841d4aa679fa",
+    "field": "diagnosis_date",
+    "action": "generalized",
+    "detail": "Date \u2192 over_2_years"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.283214Z",
+    "patient_id": "ccfc4db2-2026-7adb-3db0-33f3828140bb",
+    "field": "patient_id",
+    "action": "hashed",
+    "detail": "Original ID replaced with ANON_8851F55C9CFC"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.283214Z",
+    "patient_id": "ccfc4db2-2026-7adb-3db0-33f3828140bb",
+    "field": "name",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.283214Z",
+    "patient_id": "ccfc4db2-2026-7adb-3db0-33f3828140bb",
+    "field": "zip_code",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.283214Z",
+    "patient_id": "ccfc4db2-2026-7adb-3db0-33f3828140bb",
+    "field": "age",
+    "action": "bucketed",
+    "detail": "49 \u2192 40-49"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.283214Z",
+    "patient_id": "ccfc4db2-2026-7adb-3db0-33f3828140bb",
+    "field": "location",
+    "action": "generalized",
+    "detail": "Location generalized to region"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.283214Z",
+    "patient_id": "ccfc4db2-2026-7adb-3db0-33f3828140bb",
+    "field": "diagnosis_date",
+    "action": "generalized",
+    "detail": "Date \u2192 over_2_years"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.320619Z",
+    "patient_id": "31a2e8ec-69fc-8a71-3ab6-36cbdd508713",
+    "field": "patient_id",
+    "action": "hashed",
+    "detail": "Original ID replaced with ANON_BA3D8732FE5B"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.320619Z",
+    "patient_id": "31a2e8ec-69fc-8a71-3ab6-36cbdd508713",
+    "field": "name",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.320619Z",
+    "patient_id": "31a2e8ec-69fc-8a71-3ab6-36cbdd508713",
+    "field": "zip_code",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.320619Z",
+    "patient_id": "31a2e8ec-69fc-8a71-3ab6-36cbdd508713",
+    "field": "age",
+    "action": "bucketed",
+    "detail": "99 \u2192 80+"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.320619Z",
+    "patient_id": "31a2e8ec-69fc-8a71-3ab6-36cbdd508713",
+    "field": "location",
+    "action": "generalized",
+    "detail": "Location generalized to region"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.320619Z",
+    "patient_id": "31a2e8ec-69fc-8a71-3ab6-36cbdd508713",
+    "field": "diagnosis_date",
+    "action": "generalized",
+    "detail": "Date \u2192 over_2_years"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.350106Z",
+    "patient_id": "71a8b156-760b-df6b-859e-eefc7932a526",
+    "field": "patient_id",
+    "action": "hashed",
+    "detail": "Original ID replaced with ANON_5C4531CE9646"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.350106Z",
+    "patient_id": "71a8b156-760b-df6b-859e-eefc7932a526",
+    "field": "name",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.350106Z",
+    "patient_id": "71a8b156-760b-df6b-859e-eefc7932a526",
+    "field": "zip_code",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.350106Z",
+    "patient_id": "71a8b156-760b-df6b-859e-eefc7932a526",
+    "field": "age",
+    "action": "bucketed",
+    "detail": "11 \u2192 pediatric"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.350106Z",
+    "patient_id": "71a8b156-760b-df6b-859e-eefc7932a526",
+    "field": "location",
+    "action": "generalized",
+    "detail": "Location generalized to region"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.350106Z",
+    "patient_id": "71a8b156-760b-df6b-859e-eefc7932a526",
+    "field": "diagnosis_date",
+    "action": "generalized",
+    "detail": "Date \u2192 over_2_years"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.389683Z",
+    "patient_id": "76b289fd-e825-734c-8446-316f59643593",
+    "field": "patient_id",
+    "action": "hashed",
+    "detail": "Original ID replaced with ANON_52470129BF1D"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.389683Z",
+    "patient_id": "76b289fd-e825-734c-8446-316f59643593",
+    "field": "name",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.389683Z",
+    "patient_id": "76b289fd-e825-734c-8446-316f59643593",
+    "field": "zip_code",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.389683Z",
+    "patient_id": "76b289fd-e825-734c-8446-316f59643593",
+    "field": "age",
+    "action": "bucketed",
+    "detail": "41 \u2192 40-49"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.389683Z",
+    "patient_id": "76b289fd-e825-734c-8446-316f59643593",
+    "field": "location",
+    "action": "generalized",
+    "detail": "Location generalized to region"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.389683Z",
+    "patient_id": "76b289fd-e825-734c-8446-316f59643593",
+    "field": "diagnosis_date",
+    "action": "generalized",
+    "detail": "Date \u2192 over_2_years"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.417568Z",
+    "patient_id": "92fb7efc-5cfd-f8d3-927b-42f8ee099531",
+    "field": "patient_id",
+    "action": "hashed",
+    "detail": "Original ID replaced with ANON_15D61FA7F2A2"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.417568Z",
+    "patient_id": "92fb7efc-5cfd-f8d3-927b-42f8ee099531",
+    "field": "name",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.417568Z",
+    "patient_id": "92fb7efc-5cfd-f8d3-927b-42f8ee099531",
+    "field": "zip_code",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.417568Z",
+    "patient_id": "92fb7efc-5cfd-f8d3-927b-42f8ee099531",
+    "field": "age",
+    "action": "bucketed",
+    "detail": "12 \u2192 pediatric"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.417568Z",
+    "patient_id": "92fb7efc-5cfd-f8d3-927b-42f8ee099531",
+    "field": "location",
+    "action": "generalized",
+    "detail": "Location generalized to region"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.417568Z",
+    "patient_id": "92fb7efc-5cfd-f8d3-927b-42f8ee099531",
+    "field": "diagnosis_date",
+    "action": "generalized",
+    "detail": "Date \u2192 over_2_years"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.445911Z",
+    "patient_id": "81aa7647-779f-fd6b-94cf-782e606efeb2",
+    "field": "patient_id",
+    "action": "hashed",
+    "detail": "Original ID replaced with ANON_65C1BA5351E4"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.445911Z",
+    "patient_id": "81aa7647-779f-fd6b-94cf-782e606efeb2",
+    "field": "name",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.445911Z",
+    "patient_id": "81aa7647-779f-fd6b-94cf-782e606efeb2",
+    "field": "zip_code",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.445911Z",
+    "patient_id": "81aa7647-779f-fd6b-94cf-782e606efeb2",
+    "field": "age",
+    "action": "bucketed",
+    "detail": "11 \u2192 pediatric"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.445911Z",
+    "patient_id": "81aa7647-779f-fd6b-94cf-782e606efeb2",
+    "field": "location",
+    "action": "generalized",
+    "detail": "Location generalized to region"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.445911Z",
+    "patient_id": "81aa7647-779f-fd6b-94cf-782e606efeb2",
+    "field": "diagnosis_date",
+    "action": "generalized",
+    "detail": "Date \u2192 over_2_years"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.497345Z",
+    "patient_id": "346a1435-2455-914f-c287-7b88052d05db",
+    "field": "patient_id",
+    "action": "hashed",
+    "detail": "Original ID replaced with ANON_7471D683778B"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.497345Z",
+    "patient_id": "346a1435-2455-914f-c287-7b88052d05db",
+    "field": "name",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.497345Z",
+    "patient_id": "346a1435-2455-914f-c287-7b88052d05db",
+    "field": "zip_code",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.497345Z",
+    "patient_id": "346a1435-2455-914f-c287-7b88052d05db",
+    "field": "age",
+    "action": "bucketed",
+    "detail": "44 \u2192 40-49"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.497345Z",
+    "patient_id": "346a1435-2455-914f-c287-7b88052d05db",
+    "field": "location",
+    "action": "generalized",
+    "detail": "Location generalized to region"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.497345Z",
+    "patient_id": "346a1435-2455-914f-c287-7b88052d05db",
+    "field": "diagnosis_date",
+    "action": "generalized",
+    "detail": "Date \u2192 over_2_years"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.537809Z",
+    "patient_id": "1cfa5a70-7f3c-4227-5cf1-e182fcff4cd4",
+    "field": "patient_id",
+    "action": "hashed",
+    "detail": "Original ID replaced with ANON_E8D6E807A109"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.537809Z",
+    "patient_id": "1cfa5a70-7f3c-4227-5cf1-e182fcff4cd4",
+    "field": "name",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.537809Z",
+    "patient_id": "1cfa5a70-7f3c-4227-5cf1-e182fcff4cd4",
+    "field": "zip_code",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.537809Z",
+    "patient_id": "1cfa5a70-7f3c-4227-5cf1-e182fcff4cd4",
+    "field": "age",
+    "action": "bucketed",
+    "detail": "67 \u2192 60-69"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.537809Z",
+    "patient_id": "1cfa5a70-7f3c-4227-5cf1-e182fcff4cd4",
+    "field": "location",
+    "action": "generalized",
+    "detail": "Location generalized to region"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.537809Z",
+    "patient_id": "1cfa5a70-7f3c-4227-5cf1-e182fcff4cd4",
+    "field": "diagnosis_date",
+    "action": "generalized",
+    "detail": "Date \u2192 over_2_years"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.581302Z",
+    "patient_id": "97899f1d-9c3b-2b90-17b8-400c11ab8f0f",
+    "field": "patient_id",
+    "action": "hashed",
+    "detail": "Original ID replaced with ANON_E79EE6C7284E"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.581302Z",
+    "patient_id": "97899f1d-9c3b-2b90-17b8-400c11ab8f0f",
+    "field": "name",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.581302Z",
+    "patient_id": "97899f1d-9c3b-2b90-17b8-400c11ab8f0f",
+    "field": "zip_code",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.581302Z",
+    "patient_id": "97899f1d-9c3b-2b90-17b8-400c11ab8f0f",
+    "field": "age",
+    "action": "bucketed",
+    "detail": "56 \u2192 50-59"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.581302Z",
+    "patient_id": "97899f1d-9c3b-2b90-17b8-400c11ab8f0f",
+    "field": "location",
+    "action": "generalized",
+    "detail": "Location generalized to region"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.581302Z",
+    "patient_id": "97899f1d-9c3b-2b90-17b8-400c11ab8f0f",
+    "field": "diagnosis_date",
+    "action": "generalized",
+    "detail": "Date \u2192 over_2_years"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.633844Z",
+    "patient_id": "b8c195d4-0396-fb84-3aa2-57dd23ff5a23",
+    "field": "patient_id",
+    "action": "hashed",
+    "detail": "Original ID replaced with ANON_55D0C8679473"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.633844Z",
+    "patient_id": "b8c195d4-0396-fb84-3aa2-57dd23ff5a23",
+    "field": "name",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.633844Z",
+    "patient_id": "b8c195d4-0396-fb84-3aa2-57dd23ff5a23",
+    "field": "zip_code",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.633844Z",
+    "patient_id": "b8c195d4-0396-fb84-3aa2-57dd23ff5a23",
+    "field": "age",
+    "action": "bucketed",
+    "detail": "48 \u2192 40-49"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.633844Z",
+    "patient_id": "b8c195d4-0396-fb84-3aa2-57dd23ff5a23",
+    "field": "location",
+    "action": "generalized",
+    "detail": "Location generalized to region"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.633844Z",
+    "patient_id": "b8c195d4-0396-fb84-3aa2-57dd23ff5a23",
+    "field": "diagnosis_date",
+    "action": "generalized",
+    "detail": "Date \u2192 over_2_years"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.667114Z",
+    "patient_id": "c88891ca-5796-aca3-c67d-0b2043dd0463",
+    "field": "patient_id",
+    "action": "hashed",
+    "detail": "Original ID replaced with ANON_2CFB51E714E6"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.667114Z",
+    "patient_id": "c88891ca-5796-aca3-c67d-0b2043dd0463",
+    "field": "name",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.667114Z",
+    "patient_id": "c88891ca-5796-aca3-c67d-0b2043dd0463",
+    "field": "zip_code",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.667114Z",
+    "patient_id": "c88891ca-5796-aca3-c67d-0b2043dd0463",
+    "field": "age",
+    "action": "bucketed",
+    "detail": "18 \u2192 18-29"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.667114Z",
+    "patient_id": "c88891ca-5796-aca3-c67d-0b2043dd0463",
+    "field": "location",
+    "action": "generalized",
+    "detail": "Location generalized to region"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.667114Z",
+    "patient_id": "c88891ca-5796-aca3-c67d-0b2043dd0463",
+    "field": "diagnosis_date",
+    "action": "generalized",
+    "detail": "Date \u2192 over_2_years"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.691193Z",
+    "patient_id": "6895f047-ab31-c293-b335-374256e01eb1",
+    "field": "patient_id",
+    "action": "hashed",
+    "detail": "Original ID replaced with ANON_2DD98BD6EB12"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.691193Z",
+    "patient_id": "6895f047-ab31-c293-b335-374256e01eb1",
+    "field": "name",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.691193Z",
+    "patient_id": "6895f047-ab31-c293-b335-374256e01eb1",
+    "field": "zip_code",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.691193Z",
+    "patient_id": "6895f047-ab31-c293-b335-374256e01eb1",
+    "field": "age",
+    "action": "bucketed",
+    "detail": "6 \u2192 pediatric"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.691193Z",
+    "patient_id": "6895f047-ab31-c293-b335-374256e01eb1",
+    "field": "location",
+    "action": "generalized",
+    "detail": "Location generalized to region"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.691193Z",
+    "patient_id": "6895f047-ab31-c293-b335-374256e01eb1",
+    "field": "diagnosis_date",
+    "action": "generalized",
+    "detail": "Date \u2192 over_2_years"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.719782Z",
+    "patient_id": "ae59c2c9-648d-6f76-2d42-a1b8cac21c8b",
+    "field": "patient_id",
+    "action": "hashed",
+    "detail": "Original ID replaced with ANON_DFDA129439AB"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.719782Z",
+    "patient_id": "ae59c2c9-648d-6f76-2d42-a1b8cac21c8b",
+    "field": "name",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.719782Z",
+    "patient_id": "ae59c2c9-648d-6f76-2d42-a1b8cac21c8b",
+    "field": "zip_code",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.719782Z",
+    "patient_id": "ae59c2c9-648d-6f76-2d42-a1b8cac21c8b",
+    "field": "age",
+    "action": "bucketed",
+    "detail": "10 \u2192 pediatric"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.719782Z",
+    "patient_id": "ae59c2c9-648d-6f76-2d42-a1b8cac21c8b",
+    "field": "location",
+    "action": "generalized",
+    "detail": "Location generalized to region"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.719782Z",
+    "patient_id": "ae59c2c9-648d-6f76-2d42-a1b8cac21c8b",
+    "field": "diagnosis_date",
+    "action": "generalized",
+    "detail": "Date \u2192 over_2_years"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.778463Z",
+    "patient_id": "ad134528-56a5-35fd-c37f-466ff119c625",
+    "field": "patient_id",
+    "action": "hashed",
+    "detail": "Original ID replaced with ANON_E4A16C5DE64D"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.778463Z",
+    "patient_id": "ad134528-56a5-35fd-c37f-466ff119c625",
+    "field": "name",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.778463Z",
+    "patient_id": "ad134528-56a5-35fd-c37f-466ff119c625",
+    "field": "zip_code",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.778463Z",
+    "patient_id": "ad134528-56a5-35fd-c37f-466ff119c625",
+    "field": "age",
+    "action": "bucketed",
+    "detail": "85 \u2192 80+"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.778463Z",
+    "patient_id": "ad134528-56a5-35fd-c37f-466ff119c625",
+    "field": "location",
+    "action": "generalized",
+    "detail": "Location generalized to region"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.778463Z",
+    "patient_id": "ad134528-56a5-35fd-c37f-466ff119c625",
+    "field": "diagnosis_date",
+    "action": "generalized",
+    "detail": "Date \u2192 over_2_years"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.821516Z",
+    "patient_id": "6d2fc252-7270-aa59-e5e0-0c21432984ba",
+    "field": "patient_id",
+    "action": "hashed",
+    "detail": "Original ID replaced with ANON_7A057911A2AD"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.821516Z",
+    "patient_id": "6d2fc252-7270-aa59-e5e0-0c21432984ba",
+    "field": "name",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.821516Z",
+    "patient_id": "6d2fc252-7270-aa59-e5e0-0c21432984ba",
+    "field": "zip_code",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.821516Z",
+    "patient_id": "6d2fc252-7270-aa59-e5e0-0c21432984ba",
+    "field": "age",
+    "action": "bucketed",
+    "detail": "76 \u2192 70-79"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.821516Z",
+    "patient_id": "6d2fc252-7270-aa59-e5e0-0c21432984ba",
+    "field": "location",
+    "action": "generalized",
+    "detail": "Location generalized to region"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.821516Z",
+    "patient_id": "6d2fc252-7270-aa59-e5e0-0c21432984ba",
+    "field": "diagnosis_date",
+    "action": "generalized",
+    "detail": "Date \u2192 over_2_years"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.868633Z",
+    "patient_id": "219ddc63-11fe-e940-aa69-0e1bdd131e08",
+    "field": "patient_id",
+    "action": "hashed",
+    "detail": "Original ID replaced with ANON_27EED3B3233E"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.868633Z",
+    "patient_id": "219ddc63-11fe-e940-aa69-0e1bdd131e08",
+    "field": "name",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.868633Z",
+    "patient_id": "219ddc63-11fe-e940-aa69-0e1bdd131e08",
+    "field": "zip_code",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.868633Z",
+    "patient_id": "219ddc63-11fe-e940-aa69-0e1bdd131e08",
+    "field": "age",
+    "action": "bucketed",
+    "detail": "31 \u2192 30-39"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.868633Z",
+    "patient_id": "219ddc63-11fe-e940-aa69-0e1bdd131e08",
+    "field": "location",
+    "action": "generalized",
+    "detail": "Location generalized to region"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.868633Z",
+    "patient_id": "219ddc63-11fe-e940-aa69-0e1bdd131e08",
+    "field": "diagnosis_date",
+    "action": "generalized",
+    "detail": "Date \u2192 over_2_years"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.906473Z",
+    "patient_id": "303c8bd7-a047-5e7c-6dd3-1d6e7f04d439",
+    "field": "patient_id",
+    "action": "hashed",
+    "detail": "Original ID replaced with ANON_B5E1E7FF795D"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.906473Z",
+    "patient_id": "303c8bd7-a047-5e7c-6dd3-1d6e7f04d439",
+    "field": "name",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.906473Z",
+    "patient_id": "303c8bd7-a047-5e7c-6dd3-1d6e7f04d439",
+    "field": "zip_code",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.906473Z",
+    "patient_id": "303c8bd7-a047-5e7c-6dd3-1d6e7f04d439",
+    "field": "age",
+    "action": "bucketed",
+    "detail": "26 \u2192 18-29"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.906473Z",
+    "patient_id": "303c8bd7-a047-5e7c-6dd3-1d6e7f04d439",
+    "field": "location",
+    "action": "generalized",
+    "detail": "Location generalized to region"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:07.906473Z",
+    "patient_id": "303c8bd7-a047-5e7c-6dd3-1d6e7f04d439",
+    "field": "diagnosis_date",
+    "action": "generalized",
+    "detail": "Date \u2192 over_2_years"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.048317Z",
+    "patient_id": "96df4283-1388-506c-e88f-77cd4232e1b4",
+    "field": "patient_id",
+    "action": "hashed",
+    "detail": "Original ID replaced with ANON_CC8BB4CAF744"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.048317Z",
+    "patient_id": "96df4283-1388-506c-e88f-77cd4232e1b4",
+    "field": "name",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.048317Z",
+    "patient_id": "96df4283-1388-506c-e88f-77cd4232e1b4",
+    "field": "zip_code",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.048317Z",
+    "patient_id": "96df4283-1388-506c-e88f-77cd4232e1b4",
+    "field": "age",
+    "action": "bucketed",
+    "detail": "50 \u2192 50-59"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.048317Z",
+    "patient_id": "96df4283-1388-506c-e88f-77cd4232e1b4",
+    "field": "location",
+    "action": "generalized",
+    "detail": "Location generalized to region"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.048317Z",
+    "patient_id": "96df4283-1388-506c-e88f-77cd4232e1b4",
+    "field": "diagnosis_date",
+    "action": "generalized",
+    "detail": "Date \u2192 over_2_years"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.081635Z",
+    "patient_id": "1cd0fcc2-1fc9-6471-510b-2b524494d9f3",
+    "field": "patient_id",
+    "action": "hashed",
+    "detail": "Original ID replaced with ANON_EABC72F8533A"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.081635Z",
+    "patient_id": "1cd0fcc2-1fc9-6471-510b-2b524494d9f3",
+    "field": "name",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.081635Z",
+    "patient_id": "1cd0fcc2-1fc9-6471-510b-2b524494d9f3",
+    "field": "zip_code",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.081635Z",
+    "patient_id": "1cd0fcc2-1fc9-6471-510b-2b524494d9f3",
+    "field": "age",
+    "action": "bucketed",
+    "detail": "22 \u2192 18-29"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.081635Z",
+    "patient_id": "1cd0fcc2-1fc9-6471-510b-2b524494d9f3",
+    "field": "location",
+    "action": "generalized",
+    "detail": "Location generalized to region"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.081635Z",
+    "patient_id": "1cd0fcc2-1fc9-6471-510b-2b524494d9f3",
+    "field": "diagnosis_date",
+    "action": "generalized",
+    "detail": "Date \u2192 over_2_years"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.107725Z",
+    "patient_id": "d00d8a67-a23f-6fda-d97d-2a6391685500",
+    "field": "patient_id",
+    "action": "hashed",
+    "detail": "Original ID replaced with ANON_76E121F323C3"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.107725Z",
+    "patient_id": "d00d8a67-a23f-6fda-d97d-2a6391685500",
+    "field": "name",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.107725Z",
+    "patient_id": "d00d8a67-a23f-6fda-d97d-2a6391685500",
+    "field": "zip_code",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.107725Z",
+    "patient_id": "d00d8a67-a23f-6fda-d97d-2a6391685500",
+    "field": "age",
+    "action": "bucketed",
+    "detail": "11 \u2192 pediatric"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.107725Z",
+    "patient_id": "d00d8a67-a23f-6fda-d97d-2a6391685500",
+    "field": "location",
+    "action": "generalized",
+    "detail": "Location generalized to region"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.107725Z",
+    "patient_id": "d00d8a67-a23f-6fda-d97d-2a6391685500",
+    "field": "diagnosis_date",
+    "action": "generalized",
+    "detail": "Date \u2192 over_2_years"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.135432Z",
+    "patient_id": "1e6c1763-afae-06b8-e9ec-6a3cfee72c45",
+    "field": "patient_id",
+    "action": "hashed",
+    "detail": "Original ID replaced with ANON_79F91F52D27A"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.135432Z",
+    "patient_id": "1e6c1763-afae-06b8-e9ec-6a3cfee72c45",
+    "field": "name",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.135432Z",
+    "patient_id": "1e6c1763-afae-06b8-e9ec-6a3cfee72c45",
+    "field": "zip_code",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.135432Z",
+    "patient_id": "1e6c1763-afae-06b8-e9ec-6a3cfee72c45",
+    "field": "age",
+    "action": "bucketed",
+    "detail": "13 \u2192 pediatric"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.135432Z",
+    "patient_id": "1e6c1763-afae-06b8-e9ec-6a3cfee72c45",
+    "field": "location",
+    "action": "generalized",
+    "detail": "Location generalized to region"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.135432Z",
+    "patient_id": "1e6c1763-afae-06b8-e9ec-6a3cfee72c45",
+    "field": "diagnosis_date",
+    "action": "generalized",
+    "detail": "Date \u2192 over_2_years"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.153220Z",
+    "patient_id": "a57b5df9-090b-3367-e302-89f6c9660923",
+    "field": "patient_id",
+    "action": "hashed",
+    "detail": "Original ID replaced with ANON_2CB2C4DFD841"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.153220Z",
+    "patient_id": "a57b5df9-090b-3367-e302-89f6c9660923",
+    "field": "name",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.153220Z",
+    "patient_id": "a57b5df9-090b-3367-e302-89f6c9660923",
+    "field": "zip_code",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.153220Z",
+    "patient_id": "a57b5df9-090b-3367-e302-89f6c9660923",
+    "field": "age",
+    "action": "bucketed",
+    "detail": "31 \u2192 30-39"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.153220Z",
+    "patient_id": "a57b5df9-090b-3367-e302-89f6c9660923",
+    "field": "location",
+    "action": "generalized",
+    "detail": "Location generalized to region"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.153220Z",
+    "patient_id": "a57b5df9-090b-3367-e302-89f6c9660923",
+    "field": "diagnosis_date",
+    "action": "generalized",
+    "detail": "Date \u2192 over_2_years"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.185406Z",
+    "patient_id": "ff9f14e4-d241-71fe-a501-2199e39aa79a",
+    "field": "patient_id",
+    "action": "hashed",
+    "detail": "Original ID replaced with ANON_9A8470903B56"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.185406Z",
+    "patient_id": "ff9f14e4-d241-71fe-a501-2199e39aa79a",
+    "field": "name",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.185406Z",
+    "patient_id": "ff9f14e4-d241-71fe-a501-2199e39aa79a",
+    "field": "zip_code",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.185406Z",
+    "patient_id": "ff9f14e4-d241-71fe-a501-2199e39aa79a",
+    "field": "age",
+    "action": "bucketed",
+    "detail": "22 \u2192 18-29"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.185406Z",
+    "patient_id": "ff9f14e4-d241-71fe-a501-2199e39aa79a",
+    "field": "location",
+    "action": "generalized",
+    "detail": "Location generalized to region"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.185406Z",
+    "patient_id": "ff9f14e4-d241-71fe-a501-2199e39aa79a",
+    "field": "diagnosis_date",
+    "action": "generalized",
+    "detail": "Date \u2192 over_2_years"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.244574Z",
+    "patient_id": "e4a67e2a-4d8d-70e7-b0fb-83480abf443c",
+    "field": "patient_id",
+    "action": "hashed",
+    "detail": "Original ID replaced with ANON_125E5E09307D"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.244574Z",
+    "patient_id": "e4a67e2a-4d8d-70e7-b0fb-83480abf443c",
+    "field": "name",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.244574Z",
+    "patient_id": "e4a67e2a-4d8d-70e7-b0fb-83480abf443c",
+    "field": "zip_code",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.244574Z",
+    "patient_id": "e4a67e2a-4d8d-70e7-b0fb-83480abf443c",
+    "field": "age",
+    "action": "bucketed",
+    "detail": "40 \u2192 40-49"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.244574Z",
+    "patient_id": "e4a67e2a-4d8d-70e7-b0fb-83480abf443c",
+    "field": "location",
+    "action": "generalized",
+    "detail": "Location generalized to region"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.244574Z",
+    "patient_id": "e4a67e2a-4d8d-70e7-b0fb-83480abf443c",
+    "field": "diagnosis_date",
+    "action": "generalized",
+    "detail": "Date \u2192 over_2_years"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.287897Z",
+    "patient_id": "f8cbe1ed-be00-21ac-5705-080cb286f964",
+    "field": "patient_id",
+    "action": "hashed",
+    "detail": "Original ID replaced with ANON_5C53309B8D2D"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.287897Z",
+    "patient_id": "f8cbe1ed-be00-21ac-5705-080cb286f964",
+    "field": "name",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.287897Z",
+    "patient_id": "f8cbe1ed-be00-21ac-5705-080cb286f964",
+    "field": "zip_code",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.287897Z",
+    "patient_id": "f8cbe1ed-be00-21ac-5705-080cb286f964",
+    "field": "age",
+    "action": "bucketed",
+    "detail": "32 \u2192 30-39"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.287897Z",
+    "patient_id": "f8cbe1ed-be00-21ac-5705-080cb286f964",
+    "field": "location",
+    "action": "generalized",
+    "detail": "Location generalized to region"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.287897Z",
+    "patient_id": "f8cbe1ed-be00-21ac-5705-080cb286f964",
+    "field": "diagnosis_date",
+    "action": "generalized",
+    "detail": "Date \u2192 over_2_years"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.313280Z",
+    "patient_id": "80534c6c-b12d-caa5-42de-b179fd7f9695",
+    "field": "patient_id",
+    "action": "hashed",
+    "detail": "Original ID replaced with ANON_CC18B3EA656C"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.313280Z",
+    "patient_id": "80534c6c-b12d-caa5-42de-b179fd7f9695",
+    "field": "name",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.313280Z",
+    "patient_id": "80534c6c-b12d-caa5-42de-b179fd7f9695",
+    "field": "zip_code",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.313280Z",
+    "patient_id": "80534c6c-b12d-caa5-42de-b179fd7f9695",
+    "field": "age",
+    "action": "bucketed",
+    "detail": "31 \u2192 30-39"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.313280Z",
+    "patient_id": "80534c6c-b12d-caa5-42de-b179fd7f9695",
+    "field": "location",
+    "action": "generalized",
+    "detail": "Location generalized to region"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.313280Z",
+    "patient_id": "80534c6c-b12d-caa5-42de-b179fd7f9695",
+    "field": "diagnosis_date",
+    "action": "generalized",
+    "detail": "Date \u2192 over_2_years"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.363751Z",
+    "patient_id": "563187cb-7236-8b85-e6bc-79f35538910d",
+    "field": "patient_id",
+    "action": "hashed",
+    "detail": "Original ID replaced with ANON_54DA12937C92"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.363751Z",
+    "patient_id": "563187cb-7236-8b85-e6bc-79f35538910d",
+    "field": "name",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.363751Z",
+    "patient_id": "563187cb-7236-8b85-e6bc-79f35538910d",
+    "field": "zip_code",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.363751Z",
+    "patient_id": "563187cb-7236-8b85-e6bc-79f35538910d",
+    "field": "age",
+    "action": "bucketed",
+    "detail": "57 \u2192 50-59"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.363751Z",
+    "patient_id": "563187cb-7236-8b85-e6bc-79f35538910d",
+    "field": "location",
+    "action": "generalized",
+    "detail": "Location generalized to region"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.363751Z",
+    "patient_id": "563187cb-7236-8b85-e6bc-79f35538910d",
+    "field": "diagnosis_date",
+    "action": "generalized",
+    "detail": "Date \u2192 over_2_years"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.399482Z",
+    "patient_id": "f541e07d-a9c8-3631-5050-a25b2bd2c76e",
+    "field": "patient_id",
+    "action": "hashed",
+    "detail": "Original ID replaced with ANON_E848C3AAAC4F"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.399482Z",
+    "patient_id": "f541e07d-a9c8-3631-5050-a25b2bd2c76e",
+    "field": "name",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.399482Z",
+    "patient_id": "f541e07d-a9c8-3631-5050-a25b2bd2c76e",
+    "field": "zip_code",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.399482Z",
+    "patient_id": "f541e07d-a9c8-3631-5050-a25b2bd2c76e",
+    "field": "age",
+    "action": "bucketed",
+    "detail": "27 \u2192 18-29"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.399482Z",
+    "patient_id": "f541e07d-a9c8-3631-5050-a25b2bd2c76e",
+    "field": "location",
+    "action": "generalized",
+    "detail": "Location generalized to region"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.399482Z",
+    "patient_id": "f541e07d-a9c8-3631-5050-a25b2bd2c76e",
+    "field": "diagnosis_date",
+    "action": "generalized",
+    "detail": "Date \u2192 over_2_years"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.431609Z",
+    "patient_id": "436a7fef-6640-96ab-2557-77e40e947bc9",
+    "field": "patient_id",
+    "action": "hashed",
+    "detail": "Original ID replaced with ANON_072C3ECEDF28"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.431609Z",
+    "patient_id": "436a7fef-6640-96ab-2557-77e40e947bc9",
+    "field": "name",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.431609Z",
+    "patient_id": "436a7fef-6640-96ab-2557-77e40e947bc9",
+    "field": "zip_code",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.431609Z",
+    "patient_id": "436a7fef-6640-96ab-2557-77e40e947bc9",
+    "field": "age",
+    "action": "bucketed",
+    "detail": "20 \u2192 18-29"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.431609Z",
+    "patient_id": "436a7fef-6640-96ab-2557-77e40e947bc9",
+    "field": "location",
+    "action": "generalized",
+    "detail": "Location generalized to region"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.431609Z",
+    "patient_id": "436a7fef-6640-96ab-2557-77e40e947bc9",
+    "field": "diagnosis_date",
+    "action": "generalized",
+    "detail": "Date \u2192 over_2_years"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.544444Z",
+    "patient_id": "9e84e569-7adc-ff42-ccdb-9fe9c23842a6",
+    "field": "patient_id",
+    "action": "hashed",
+    "detail": "Original ID replaced with ANON_84D6019BF3F1"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.544444Z",
+    "patient_id": "9e84e569-7adc-ff42-ccdb-9fe9c23842a6",
+    "field": "name",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.544444Z",
+    "patient_id": "9e84e569-7adc-ff42-ccdb-9fe9c23842a6",
+    "field": "zip_code",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.544444Z",
+    "patient_id": "9e84e569-7adc-ff42-ccdb-9fe9c23842a6",
+    "field": "age",
+    "action": "bucketed",
+    "detail": "80 \u2192 80+"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.544444Z",
+    "patient_id": "9e84e569-7adc-ff42-ccdb-9fe9c23842a6",
+    "field": "location",
+    "action": "generalized",
+    "detail": "Location generalized to region"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.544444Z",
+    "patient_id": "9e84e569-7adc-ff42-ccdb-9fe9c23842a6",
+    "field": "diagnosis_date",
+    "action": "generalized",
+    "detail": "Date \u2192 over_2_years"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.578035Z",
+    "patient_id": "a4ce9a28-c676-33d4-1656-0cb7e4419883",
+    "field": "patient_id",
+    "action": "hashed",
+    "detail": "Original ID replaced with ANON_722FEA55899A"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.578035Z",
+    "patient_id": "a4ce9a28-c676-33d4-1656-0cb7e4419883",
+    "field": "name",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.578035Z",
+    "patient_id": "a4ce9a28-c676-33d4-1656-0cb7e4419883",
+    "field": "zip_code",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.578035Z",
+    "patient_id": "a4ce9a28-c676-33d4-1656-0cb7e4419883",
+    "field": "age",
+    "action": "bucketed",
+    "detail": "17 \u2192 pediatric"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.578035Z",
+    "patient_id": "a4ce9a28-c676-33d4-1656-0cb7e4419883",
+    "field": "location",
+    "action": "generalized",
+    "detail": "Location generalized to region"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.578035Z",
+    "patient_id": "a4ce9a28-c676-33d4-1656-0cb7e4419883",
+    "field": "diagnosis_date",
+    "action": "generalized",
+    "detail": "Date \u2192 over_2_years"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.622374Z",
+    "patient_id": "965ecf4b-40d6-02e3-fe08-acd9eafc68fe",
+    "field": "patient_id",
+    "action": "hashed",
+    "detail": "Original ID replaced with ANON_C0D69B6916CB"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.622374Z",
+    "patient_id": "965ecf4b-40d6-02e3-fe08-acd9eafc68fe",
+    "field": "name",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.622374Z",
+    "patient_id": "965ecf4b-40d6-02e3-fe08-acd9eafc68fe",
+    "field": "zip_code",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.622374Z",
+    "patient_id": "965ecf4b-40d6-02e3-fe08-acd9eafc68fe",
+    "field": "age",
+    "action": "bucketed",
+    "detail": "54 \u2192 50-59"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.622986Z",
+    "patient_id": "965ecf4b-40d6-02e3-fe08-acd9eafc68fe",
+    "field": "location",
+    "action": "generalized",
+    "detail": "Location generalized to region"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.622986Z",
+    "patient_id": "965ecf4b-40d6-02e3-fe08-acd9eafc68fe",
+    "field": "diagnosis_date",
+    "action": "generalized",
+    "detail": "Date \u2192 over_2_years"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.651792Z",
+    "patient_id": "b810c52d-5c90-ede3-65b0-cdcda01df8f4",
+    "field": "patient_id",
+    "action": "hashed",
+    "detail": "Original ID replaced with ANON_8CA4AE0743C6"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.651792Z",
+    "patient_id": "b810c52d-5c90-ede3-65b0-cdcda01df8f4",
+    "field": "name",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.651792Z",
+    "patient_id": "b810c52d-5c90-ede3-65b0-cdcda01df8f4",
+    "field": "zip_code",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.651792Z",
+    "patient_id": "b810c52d-5c90-ede3-65b0-cdcda01df8f4",
+    "field": "age",
+    "action": "bucketed",
+    "detail": "30 \u2192 30-39"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.651792Z",
+    "patient_id": "b810c52d-5c90-ede3-65b0-cdcda01df8f4",
+    "field": "location",
+    "action": "generalized",
+    "detail": "Location generalized to region"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.651792Z",
+    "patient_id": "b810c52d-5c90-ede3-65b0-cdcda01df8f4",
+    "field": "diagnosis_date",
+    "action": "generalized",
+    "detail": "Date \u2192 over_2_years"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.675494Z",
+    "patient_id": "a8eed586-7fc7-e064-78ee-c6d227039940",
+    "field": "patient_id",
+    "action": "hashed",
+    "detail": "Original ID replaced with ANON_D85FCA0BC27F"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.675494Z",
+    "patient_id": "a8eed586-7fc7-e064-78ee-c6d227039940",
+    "field": "name",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.675494Z",
+    "patient_id": "a8eed586-7fc7-e064-78ee-c6d227039940",
+    "field": "zip_code",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.675494Z",
+    "patient_id": "a8eed586-7fc7-e064-78ee-c6d227039940",
+    "field": "age",
+    "action": "bucketed",
+    "detail": "10 \u2192 pediatric"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.675494Z",
+    "patient_id": "a8eed586-7fc7-e064-78ee-c6d227039940",
+    "field": "location",
+    "action": "generalized",
+    "detail": "Location generalized to region"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.675494Z",
+    "patient_id": "a8eed586-7fc7-e064-78ee-c6d227039940",
+    "field": "diagnosis_date",
+    "action": "generalized",
+    "detail": "Date \u2192 over_2_years"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.706026Z",
+    "patient_id": "859e5c6f-f1db-308d-0e33-57d392c1bf04",
+    "field": "patient_id",
+    "action": "hashed",
+    "detail": "Original ID replaced with ANON_07EAD0CFAC74"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.706026Z",
+    "patient_id": "859e5c6f-f1db-308d-0e33-57d392c1bf04",
+    "field": "name",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.706026Z",
+    "patient_id": "859e5c6f-f1db-308d-0e33-57d392c1bf04",
+    "field": "zip_code",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.706026Z",
+    "patient_id": "859e5c6f-f1db-308d-0e33-57d392c1bf04",
+    "field": "age",
+    "action": "bucketed",
+    "detail": "16 \u2192 pediatric"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.706026Z",
+    "patient_id": "859e5c6f-f1db-308d-0e33-57d392c1bf04",
+    "field": "location",
+    "action": "generalized",
+    "detail": "Location generalized to region"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.706026Z",
+    "patient_id": "859e5c6f-f1db-308d-0e33-57d392c1bf04",
+    "field": "diagnosis_date",
+    "action": "generalized",
+    "detail": "Date \u2192 over_2_years"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.748558Z",
+    "patient_id": "094c294d-4e4c-043d-4100-f59b08b45770",
+    "field": "patient_id",
+    "action": "hashed",
+    "detail": "Original ID replaced with ANON_CE634514B4D0"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.748558Z",
+    "patient_id": "094c294d-4e4c-043d-4100-f59b08b45770",
+    "field": "name",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.748558Z",
+    "patient_id": "094c294d-4e4c-043d-4100-f59b08b45770",
+    "field": "zip_code",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.748558Z",
+    "patient_id": "094c294d-4e4c-043d-4100-f59b08b45770",
+    "field": "age",
+    "action": "bucketed",
+    "detail": "35 \u2192 30-39"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.748558Z",
+    "patient_id": "094c294d-4e4c-043d-4100-f59b08b45770",
+    "field": "location",
+    "action": "generalized",
+    "detail": "Location generalized to region"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.748558Z",
+    "patient_id": "094c294d-4e4c-043d-4100-f59b08b45770",
+    "field": "diagnosis_date",
+    "action": "generalized",
+    "detail": "Date \u2192 over_2_years"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.791285Z",
+    "patient_id": "30db29cb-a1c0-272e-bfed-ce88ebc23b2d",
+    "field": "patient_id",
+    "action": "hashed",
+    "detail": "Original ID replaced with ANON_B7CECCDE27B0"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.791285Z",
+    "patient_id": "30db29cb-a1c0-272e-bfed-ce88ebc23b2d",
+    "field": "name",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.791285Z",
+    "patient_id": "30db29cb-a1c0-272e-bfed-ce88ebc23b2d",
+    "field": "zip_code",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.791285Z",
+    "patient_id": "30db29cb-a1c0-272e-bfed-ce88ebc23b2d",
+    "field": "age",
+    "action": "bucketed",
+    "detail": "60 \u2192 60-69"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.791285Z",
+    "patient_id": "30db29cb-a1c0-272e-bfed-ce88ebc23b2d",
+    "field": "location",
+    "action": "generalized",
+    "detail": "Location generalized to region"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.791285Z",
+    "patient_id": "30db29cb-a1c0-272e-bfed-ce88ebc23b2d",
+    "field": "diagnosis_date",
+    "action": "generalized",
+    "detail": "Date \u2192 over_2_years"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.842899Z",
+    "patient_id": "0fc183b2-8b93-ec17-d2fc-e703b373c9d7",
+    "field": "patient_id",
+    "action": "hashed",
+    "detail": "Original ID replaced with ANON_F3F34BE69EAA"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.842899Z",
+    "patient_id": "0fc183b2-8b93-ec17-d2fc-e703b373c9d7",
+    "field": "name",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.842899Z",
+    "patient_id": "0fc183b2-8b93-ec17-d2fc-e703b373c9d7",
+    "field": "zip_code",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.842899Z",
+    "patient_id": "0fc183b2-8b93-ec17-d2fc-e703b373c9d7",
+    "field": "age",
+    "action": "bucketed",
+    "detail": "55 \u2192 50-59"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.842899Z",
+    "patient_id": "0fc183b2-8b93-ec17-d2fc-e703b373c9d7",
+    "field": "location",
+    "action": "generalized",
+    "detail": "Location generalized to region"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.842899Z",
+    "patient_id": "0fc183b2-8b93-ec17-d2fc-e703b373c9d7",
+    "field": "diagnosis_date",
+    "action": "generalized",
+    "detail": "Date \u2192 over_2_years"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.886048Z",
+    "patient_id": "92895f1d-3f61-fc09-a300-e3e533a25592",
+    "field": "patient_id",
+    "action": "hashed",
+    "detail": "Original ID replaced with ANON_90E1835AF39D"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.886048Z",
+    "patient_id": "92895f1d-3f61-fc09-a300-e3e533a25592",
+    "field": "name",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.886048Z",
+    "patient_id": "92895f1d-3f61-fc09-a300-e3e533a25592",
+    "field": "zip_code",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.886048Z",
+    "patient_id": "92895f1d-3f61-fc09-a300-e3e533a25592",
+    "field": "age",
+    "action": "bucketed",
+    "detail": "51 \u2192 50-59"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.886048Z",
+    "patient_id": "92895f1d-3f61-fc09-a300-e3e533a25592",
+    "field": "location",
+    "action": "generalized",
+    "detail": "Location generalized to region"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.886048Z",
+    "patient_id": "92895f1d-3f61-fc09-a300-e3e533a25592",
+    "field": "diagnosis_date",
+    "action": "generalized",
+    "detail": "Date \u2192 over_2_years"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.916303Z",
+    "patient_id": "c0219ca9-576f-f7c2-9c44-de030e94969b",
+    "field": "patient_id",
+    "action": "hashed",
+    "detail": "Original ID replaced with ANON_CB09292934C4"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.916303Z",
+    "patient_id": "c0219ca9-576f-f7c2-9c44-de030e94969b",
+    "field": "name",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.916303Z",
+    "patient_id": "c0219ca9-576f-f7c2-9c44-de030e94969b",
+    "field": "zip_code",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.916303Z",
+    "patient_id": "c0219ca9-576f-f7c2-9c44-de030e94969b",
+    "field": "age",
+    "action": "bucketed",
+    "detail": "54 \u2192 50-59"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.917386Z",
+    "patient_id": "c0219ca9-576f-f7c2-9c44-de030e94969b",
+    "field": "location",
+    "action": "generalized",
+    "detail": "Location generalized to region"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.917386Z",
+    "patient_id": "c0219ca9-576f-f7c2-9c44-de030e94969b",
+    "field": "diagnosis_date",
+    "action": "generalized",
+    "detail": "Date \u2192 over_2_years"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.956043Z",
+    "patient_id": "fbc55f1a-9438-99af-595e-8a4196b6684b",
+    "field": "patient_id",
+    "action": "hashed",
+    "detail": "Original ID replaced with ANON_C1AA570318B6"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.956043Z",
+    "patient_id": "fbc55f1a-9438-99af-595e-8a4196b6684b",
+    "field": "name",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.956043Z",
+    "patient_id": "fbc55f1a-9438-99af-595e-8a4196b6684b",
+    "field": "zip_code",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.956043Z",
+    "patient_id": "fbc55f1a-9438-99af-595e-8a4196b6684b",
+    "field": "age",
+    "action": "bucketed",
+    "detail": "32 \u2192 30-39"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.956043Z",
+    "patient_id": "fbc55f1a-9438-99af-595e-8a4196b6684b",
+    "field": "location",
+    "action": "generalized",
+    "detail": "Location generalized to region"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.956043Z",
+    "patient_id": "fbc55f1a-9438-99af-595e-8a4196b6684b",
+    "field": "diagnosis_date",
+    "action": "generalized",
+    "detail": "Date \u2192 over_2_years"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.993772Z",
+    "patient_id": "35514332-8f8e-fc6c-6dc4-850fc975f574",
+    "field": "patient_id",
+    "action": "hashed",
+    "detail": "Original ID replaced with ANON_2B38C582D5BA"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.993772Z",
+    "patient_id": "35514332-8f8e-fc6c-6dc4-850fc975f574",
+    "field": "name",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.993772Z",
+    "patient_id": "35514332-8f8e-fc6c-6dc4-850fc975f574",
+    "field": "zip_code",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.993772Z",
+    "patient_id": "35514332-8f8e-fc6c-6dc4-850fc975f574",
+    "field": "age",
+    "action": "bucketed",
+    "detail": "23 \u2192 18-29"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.993772Z",
+    "patient_id": "35514332-8f8e-fc6c-6dc4-850fc975f574",
+    "field": "location",
+    "action": "generalized",
+    "detail": "Location generalized to region"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:08.993772Z",
+    "patient_id": "35514332-8f8e-fc6c-6dc4-850fc975f574",
+    "field": "diagnosis_date",
+    "action": "generalized",
+    "detail": "Date \u2192 over_2_years"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:09.044265Z",
+    "patient_id": "060e72d3-912e-55cd-0c92-5faa6cb7a6db",
+    "field": "patient_id",
+    "action": "hashed",
+    "detail": "Original ID replaced with ANON_FEABF67F989C"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:09.044265Z",
+    "patient_id": "060e72d3-912e-55cd-0c92-5faa6cb7a6db",
+    "field": "name",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:09.044265Z",
+    "patient_id": "060e72d3-912e-55cd-0c92-5faa6cb7a6db",
+    "field": "zip_code",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:09.044265Z",
+    "patient_id": "060e72d3-912e-55cd-0c92-5faa6cb7a6db",
+    "field": "age",
+    "action": "bucketed",
+    "detail": "57 \u2192 50-59"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:09.044265Z",
+    "patient_id": "060e72d3-912e-55cd-0c92-5faa6cb7a6db",
+    "field": "location",
+    "action": "generalized",
+    "detail": "Location generalized to region"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:09.044265Z",
+    "patient_id": "060e72d3-912e-55cd-0c92-5faa6cb7a6db",
+    "field": "diagnosis_date",
+    "action": "generalized",
+    "detail": "Date \u2192 over_2_years"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:09.098576Z",
+    "patient_id": "c2786fee-2b45-56cd-f36c-96ad2ce9ab01",
+    "field": "patient_id",
+    "action": "hashed",
+    "detail": "Original ID replaced with ANON_F43D7D9ED013"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:09.098576Z",
+    "patient_id": "c2786fee-2b45-56cd-f36c-96ad2ce9ab01",
+    "field": "name",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:09.098576Z",
+    "patient_id": "c2786fee-2b45-56cd-f36c-96ad2ce9ab01",
+    "field": "zip_code",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:09.098576Z",
+    "patient_id": "c2786fee-2b45-56cd-f36c-96ad2ce9ab01",
+    "field": "age",
+    "action": "bucketed",
+    "detail": "74 \u2192 70-79"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:09.098576Z",
+    "patient_id": "c2786fee-2b45-56cd-f36c-96ad2ce9ab01",
+    "field": "location",
+    "action": "generalized",
+    "detail": "Location generalized to region"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:09.098576Z",
+    "patient_id": "c2786fee-2b45-56cd-f36c-96ad2ce9ab01",
+    "field": "diagnosis_date",
+    "action": "generalized",
+    "detail": "Date \u2192 over_2_years"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:09.139776Z",
+    "patient_id": "4b10c406-d391-31dc-cefd-5812b6832cf9",
+    "field": "patient_id",
+    "action": "hashed",
+    "detail": "Original ID replaced with ANON_1290EB2C4CCC"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:09.139776Z",
+    "patient_id": "4b10c406-d391-31dc-cefd-5812b6832cf9",
+    "field": "name",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:09.139776Z",
+    "patient_id": "4b10c406-d391-31dc-cefd-5812b6832cf9",
+    "field": "zip_code",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:09.139776Z",
+    "patient_id": "4b10c406-d391-31dc-cefd-5812b6832cf9",
+    "field": "age",
+    "action": "bucketed",
+    "detail": "74 \u2192 70-79"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:09.139776Z",
+    "patient_id": "4b10c406-d391-31dc-cefd-5812b6832cf9",
+    "field": "location",
+    "action": "generalized",
+    "detail": "Location generalized to region"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:09.139776Z",
+    "patient_id": "4b10c406-d391-31dc-cefd-5812b6832cf9",
+    "field": "diagnosis_date",
+    "action": "generalized",
+    "detail": "Date \u2192 over_2_years"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:09.181267Z",
+    "patient_id": "5b03f610-14e2-e72c-1eb0-3fdcebcbd38d",
+    "field": "patient_id",
+    "action": "hashed",
+    "detail": "Original ID replaced with ANON_9329D00FAC1E"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:09.181267Z",
+    "patient_id": "5b03f610-14e2-e72c-1eb0-3fdcebcbd38d",
+    "field": "name",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:09.181267Z",
+    "patient_id": "5b03f610-14e2-e72c-1eb0-3fdcebcbd38d",
+    "field": "zip_code",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:09.181267Z",
+    "patient_id": "5b03f610-14e2-e72c-1eb0-3fdcebcbd38d",
+    "field": "age",
+    "action": "bucketed",
+    "detail": "75 \u2192 70-79"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:09.181267Z",
+    "patient_id": "5b03f610-14e2-e72c-1eb0-3fdcebcbd38d",
+    "field": "location",
+    "action": "generalized",
+    "detail": "Location generalized to region"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:09.181267Z",
+    "patient_id": "5b03f610-14e2-e72c-1eb0-3fdcebcbd38d",
+    "field": "diagnosis_date",
+    "action": "generalized",
+    "detail": "Date \u2192 over_2_years"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:09.217486Z",
+    "patient_id": "4e100688-c089-1057-395a-eb4ced369230",
+    "field": "patient_id",
+    "action": "hashed",
+    "detail": "Original ID replaced with ANON_BB8E4FFBBB66"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:09.217486Z",
+    "patient_id": "4e100688-c089-1057-395a-eb4ced369230",
+    "field": "name",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:09.217486Z",
+    "patient_id": "4e100688-c089-1057-395a-eb4ced369230",
+    "field": "zip_code",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:09.217486Z",
+    "patient_id": "4e100688-c089-1057-395a-eb4ced369230",
+    "field": "age",
+    "action": "bucketed",
+    "detail": "13 \u2192 pediatric"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:09.217486Z",
+    "patient_id": "4e100688-c089-1057-395a-eb4ced369230",
+    "field": "location",
+    "action": "generalized",
+    "detail": "Location generalized to region"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:09.217486Z",
+    "patient_id": "4e100688-c089-1057-395a-eb4ced369230",
+    "field": "diagnosis_date",
+    "action": "generalized",
+    "detail": "Date \u2192 over_2_years"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:09.254491Z",
+    "patient_id": "48fe9d25-b0b2-df56-3756-90843b3044a9",
+    "field": "patient_id",
+    "action": "hashed",
+    "detail": "Original ID replaced with ANON_95D6FD128C05"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:09.254491Z",
+    "patient_id": "48fe9d25-b0b2-df56-3756-90843b3044a9",
+    "field": "name",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:09.254491Z",
+    "patient_id": "48fe9d25-b0b2-df56-3756-90843b3044a9",
+    "field": "zip_code",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:09.254491Z",
+    "patient_id": "48fe9d25-b0b2-df56-3756-90843b3044a9",
+    "field": "age",
+    "action": "bucketed",
+    "detail": "20 \u2192 18-29"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:09.255490Z",
+    "patient_id": "48fe9d25-b0b2-df56-3756-90843b3044a9",
+    "field": "location",
+    "action": "generalized",
+    "detail": "Location generalized to region"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:09.255490Z",
+    "patient_id": "48fe9d25-b0b2-df56-3756-90843b3044a9",
+    "field": "diagnosis_date",
+    "action": "generalized",
+    "detail": "Date \u2192 over_2_years"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:09.284319Z",
+    "patient_id": "ba9773bf-d2ba-899b-a68c-4ef986c1325e",
+    "field": "patient_id",
+    "action": "hashed",
+    "detail": "Original ID replaced with ANON_0118068ECC78"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:09.284319Z",
+    "patient_id": "ba9773bf-d2ba-899b-a68c-4ef986c1325e",
+    "field": "name",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:09.284319Z",
+    "patient_id": "ba9773bf-d2ba-899b-a68c-4ef986c1325e",
+    "field": "zip_code",
+    "action": "removed",
+    "detail": "PII field stripped"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:09.284319Z",
+    "patient_id": "ba9773bf-d2ba-899b-a68c-4ef986c1325e",
+    "field": "age",
+    "action": "bucketed",
+    "detail": "59 \u2192 50-59"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:09.284319Z",
+    "patient_id": "ba9773bf-d2ba-899b-a68c-4ef986c1325e",
+    "field": "location",
+    "action": "generalized",
+    "detail": "Location generalized to region"
+  },
+  {
+    "timestamp": "2026-03-06T17:41:09.284319Z",
+    "patient_id": "ba9773bf-d2ba-899b-a68c-4ef986c1325e",
+    "field": "diagnosis_date",
+    "action": "generalized",
+    "detail": "Date \u2192 over_2_years"
+  }
+]

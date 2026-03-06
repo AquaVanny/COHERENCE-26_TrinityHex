@@ -3,20 +3,63 @@ import { AlertCircle, CheckCircle, FileText, Search, Upload, User } from 'lucide
 import axios from 'axios'
 import FileUpload from './FileUpload'
 
+interface RuleExplanation {
+  text: string
+  status: string
+  icon: string
+  is_exclusion: boolean
+  criterion_type: string
+}
+
+interface ConfidenceBreakdown {
+  confidence_tier: string
+  fused_score_pct: number
+  rule_score_pct: number
+  ml_score_pct: number
+  hard_exclusion: boolean
+  criteria_summary: {
+    total: number
+    eligible: number
+    ineligible: number
+    unknown: number
+  }
+}
+
+interface GeoInfo {
+  distance_miles: number
+  nearest_site: string
+}
+
 interface RankedTrial {
   trial_id: string
   title: string
   phase: string
   location: string
-  confidence: number
-  eligibility_score: number
-  explanations: string[]
+  sponsor: string
+  overall_status: string
+  fused_score: number
+  confidence_tier: string
+  rule_score: number
+  ml_score: number
+  hard_exclusion: boolean
+  rule_explanations: RuleExplanation[]
+  confidence_breakdown: ConfidenceBreakdown
+  geographic_info: GeoInfo | null
+  match_summary: string
+  rank: number
+  // Legacy compat
+  confidence?: number
+  eligibility_score?: number
+  explanations?: string[]
 }
 
 interface MatchResult {
   patient_id: string
-  ranked_trials: RankedTrial[]
-  total_trials: number
+  ranked_matches: RankedTrial[]
+  // Legacy compat
+  ranked_trials?: RankedTrial[]
+  total_trials?: number
+  total_trials_evaluated?: number
 }
 
 const samplePatient = {
@@ -57,12 +100,10 @@ const AppPatientMatcher = () => {
 
     try {
       const patient = JSON.parse(patientData)
-      const trialsResponse = await axios.get('http://localhost:5000/api/sample-data')
-      const trials = trialsResponse.data.trials
 
-      const matchResponse = await axios.post('http://localhost:5000/api/match-trials', {
-        patient_data: patient,
-        trials_data: trials
+      // Use v2 pipeline endpoint
+      const matchResponse = await axios.post('http://localhost:5000/api/v2/match', {
+        patient_data: patient
       })
 
       setMatchResults(matchResponse.data)
@@ -83,8 +124,8 @@ const AppPatientMatcher = () => {
       if (firstResult) {
         setMatchResults({
           patient_id: firstResult.patient_id,
-          ranked_trials: firstResult.ranked_trials,
-          total_trials: firstResult.total_trials_evaluated
+          ranked_matches: firstResult.ranked_matches || firstResult.ranked_trials,
+          total_trials_evaluated: firstResult.total_trials_evaluated
         })
       }
     }
@@ -211,26 +252,39 @@ const AppPatientMatcher = () => {
                   <div className="flex items-center justify-between gap-4">
                     <div>
                       <p className="font-semibold text-white">Patient ID: {matchResults.patient_id}</p>
-                      <p className="text-sm muted-text">Found {matchResults.ranked_trials.length} potential matches</p>
+                      <p className="text-sm muted-text">Found {(matchResults.ranked_matches || matchResults.ranked_trials || []).length} potential matches</p>
                     </div>
                     <FileText className="h-6 w-6" style={{ color: 'var(--blue)' }} />
                   </div>
                 </div>
 
                 <div className="result-list max-h-[560px] overflow-y-auto pr-1">
-                  {matchResults.ranked_trials.map((trial, index) => {
-                    const high = trial.eligibility_score > 0.7
-                    const mid = trial.eligibility_score > 0.4 && trial.eligibility_score <= 0.7
+                  {(matchResults.ranked_matches || matchResults.ranked_trials || []).map((trial, index) => {
+                    const score = trial.fused_score ?? trial.eligibility_score ?? 0
+                    const high = score > 0.7
+                    const mid = score > 0.4 && score <= 0.7
+                    const tier = trial.confidence_tier || (high ? 'HIGH' : mid ? 'MEDIUM' : 'LOW')
+                    const ruleExps = trial.rule_explanations || []
+                    const legacyExps = trial.explanations || []
 
                     return (
                       <div key={trial.trial_id} className="rounded-[12px] border border-white/10 bg-[rgba(13,22,45,0.6)] p-5">
                         <div className="mb-3 flex items-start justify-between gap-3">
                           <div>
                             <div className="mb-1 flex items-center gap-2">
-                              <span className="rounded bg-white/8 px-2 py-1 text-xs muted-text">#{index + 1}</span>
+                              <span className="rounded bg-white/8 px-2 py-1 text-xs muted-text">#{trial.rank || index + 1}</span>
                               <h3 className="text-sm font-semibold text-white">{trial.title}</h3>
                             </div>
-                            <p className="text-xs muted-text">{trial.trial_id} • {trial.phase}</p>
+                            <div className="mt-1 flex flex-wrap items-center gap-2 text-xs">
+                              <span className="muted-text">{trial.trial_id} • {trial.phase}</span>
+                              {trial.overall_status && (
+                                <span className={`rounded px-1.5 py-0.5 text-[10px] font-bold ${
+                                  trial.overall_status === 'ELIGIBLE' ? 'bg-green-400/10 text-green-300'
+                                  : trial.overall_status === 'INELIGIBLE' ? 'bg-red-400/10 text-red-300'
+                                  : 'bg-yellow-400/10 text-yellow-300'
+                                }`}>{trial.overall_status}</span>
+                              )}
+                            </div>
                             <p className="mt-1 text-xs muted-text">{trial.location}</p>
                           </div>
 
@@ -243,27 +297,64 @@ const AppPatientMatcher = () => {
                                 border: `1px solid ${high ? 'rgba(52,211,153,0.25)' : mid ? 'rgba(96,165,250,0.25)' : 'rgba(251,191,36,0.2)'}`
                               }}
                             >
-                              {trial.eligibility_score > 0.5 ? <CheckCircle className="h-3 w-3" /> : <AlertCircle className="h-3 w-3" />}
-                              {Math.round(trial.eligibility_score * 100)}%
+                              {score > 0.5 ? <CheckCircle className="h-3 w-3" /> : <AlertCircle className="h-3 w-3" />}
+                              {Math.round(score * 100)}%
                             </span>
-                            <p className="mt-1 text-xs muted-text">Confidence: {Math.round(trial.confidence * 100)}%</p>
+                            <p className="mt-1 text-xs muted-text">{tier} Confidence</p>
                           </div>
                         </div>
+
+                        {/* Score breakdown */}
+                        {trial.confidence_breakdown && (
+                          <div className="mb-3 flex items-center gap-3 text-[10px] muted-text">
+                            <span>Rule {trial.confidence_breakdown.rule_score_pct}%</span>
+                            <div className="h-1 flex-1 overflow-hidden rounded-full bg-white/5">
+                              <div className="flex h-full">
+                                <div className="h-full bg-blue-400/60" style={{ width: `${trial.confidence_breakdown.rule_score_pct * 0.6}%` }}></div>
+                                <div className="h-full bg-purple-400/60" style={{ width: `${trial.confidence_breakdown.ml_score_pct * 0.4}%` }}></div>
+                              </div>
+                            </div>
+                            <span>ML {trial.confidence_breakdown.ml_score_pct}%</span>
+                          </div>
+                        )}
+
+                        {/* Geographic info */}
+                        {trial.geographic_info && (
+                          <div className="mb-2 text-xs muted-text">
+                            Nearest site: {trial.geographic_info.nearest_site} ({trial.geographic_info.distance_miles} mi)
+                          </div>
+                        )}
 
                         <div className="border-t border-white/10 pt-3">
                           <h4 className="mb-2 text-[11px] font-bold uppercase tracking-[1.2px] muted-text">Eligibility Analysis</h4>
                           <div className="space-y-2">
-                            {trial.explanations.slice(0, 2).map((explanation, idx) => (
-                              <div key={`${trial.trial_id}-${idx}`} className="flex items-start gap-3 text-xs mid-text">
-                                <div className="mt-1.5 h-[5px] w-[5px] rounded-full bg-slate-400"></div>
-                                <span>{explanation}</span>
-                              </div>
-                            ))}
-                            {trial.explanations.length > 2 && (
-                              <p className="text-xs muted-text">+{trial.explanations.length - 2} more criteria analyzed</p>
+                            {ruleExps.length > 0
+                              ? ruleExps.slice(0, 4).map((exp, idx) => (
+                                  <div key={`${trial.trial_id}-r-${idx}`} className="flex items-start gap-2 text-xs">
+                                    <span className="mt-0.5 flex-shrink-0">{exp.icon}</span>
+                                    <span className={exp.status === 'ELIGIBLE' ? 'text-green-300' : exp.status === 'INELIGIBLE' ? 'text-red-300' : 'text-yellow-300'}>
+                                      {exp.text}
+                                    </span>
+                                  </div>
+                                ))
+                              : legacyExps.slice(0, 2).map((explanation, idx) => (
+                                  <div key={`${trial.trial_id}-${idx}`} className="flex items-start gap-3 text-xs mid-text">
+                                    <div className="mt-1.5 h-[5px] w-[5px] rounded-full bg-slate-400"></div>
+                                    <span>{explanation}</span>
+                                  </div>
+                                ))
+                            }
+                            {ruleExps.length > 4 && (
+                              <p className="text-xs muted-text">+{ruleExps.length - 4} more criteria analyzed</p>
                             )}
                           </div>
                         </div>
+
+                        {trial.match_summary && (
+                          <div className="mt-3 rounded-lg border border-white/5 bg-white/[0.02] p-2.5 text-[11px] italic muted-text">
+                            {trial.match_summary}
+                          </div>
+                        )}
                       </div>
                     )
                   })}
