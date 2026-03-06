@@ -1,0 +1,79 @@
+[
+  {
+    "patient_id": "P001",
+    "name": "John Smith",
+    "age": 45,
+    "gender": "male",
+    "location": "San Francisco, CA",
+    "diagnosis": ["Type 2 Diabetes", "Hypertension"],
+    "diagnosis_date": "2023-01-15T00:00:00Z",
+    "medications": ["Metformin", "Lisinopril"],
+    "lab_results": {
+      "hba1c": 8.2,
+      "glucose": 180,
+      "blood_pressure": "140/90"
+    },
+    "vital_signs": {
+      "weight": 85,
+      "height": 175,
+      "bmi": 27.8
+    }
+  },
+  {
+    "patient_id": "P002",
+    "name": "Sarah Johnson",
+    "age": 32,
+    "gender": "female",
+    "location": "Boston, MA",
+    "diagnosis": ["Breast Cancer Stage II"],
+    "diagnosis_date": "2024-02-20T00:00:00Z",
+    "medications": ["Tamoxifen"],
+    "lab_results": {
+      "cea": 3.2,
+      "ca_15_3": 25
+    },
+    "vital_signs": {
+      "weight": 65,
+      "height": 165,
+      "bmi": 23.9
+    }
+  },
+  {
+    "patient_id": "P003",
+    "name": "Michael Chen",
+    "age": 67,
+    "gender": "male",
+    "location": "Los Angeles, CA",
+    "diagnosis": ["Alzheimer's Disease", "Depression"],
+    "diagnosis_date": "2023-08-10T00:00:00Z",
+    "medications": ["Donepezil", "Sertraline"],
+    "lab_results": {
+      "mmse_score": 18,
+      "moca_score": 15
+    },
+    "vital_signs": {
+      "weight": 78,
+      "height": 170,
+      "bmi": 27.0
+    }
+  },
+  {
+    "patient_id": "P004",
+    "name": "Emily Rodriguez",
+    "age": 28,
+    "gender": "female",
+    "location": "Miami, FL",
+    "diagnosis": ["Asthma", "Allergic Rhinitis"],
+    "diagnosis_date": "2022-05-12T00:00:00Z",
+    "medications": ["Albuterol", "Fluticasone"],
+    "lab_results": {
+      "ige_total": 450,
+      "eosinophils": 8
+    },
+    "vital_signs": {
+      "weight": 58,
+      "height": 160,
+      "bmi": 22.7
+    }
+  }
+]

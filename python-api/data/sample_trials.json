@@ -1,0 +1,72 @@
+[
+  {
+    "trial_id": "NCT12345678",
+    "title": "Phase III Study of Novel Diabetes Treatment",
+    "phase": "Phase III",
+    "sponsor": "Diabetes Research Institute",
+    "location": "San Francisco, CA; Los Angeles, CA; Seattle, WA",
+    "status": "Recruiting",
+    "condition": "Type 2 Diabetes Mellitus",
+    "eligibility_criteria": "Inclusion Criteria: Age 18-75 years; Diagnosed with Type 2 diabetes for at least 6 months; HbA1c between 7.0-10.5%; Currently taking metformin. Exclusion Criteria: Type 1 diabetes; Severe kidney disease; Pregnancy; History of diabetic ketoacidosis.",
+    "primary_outcome": "Change in HbA1c from baseline to 24 weeks",
+    "estimated_enrollment": 500,
+    "study_start_date": "2024-01-01",
+    "estimated_completion": "2025-12-31"
+  },
+  {
+    "trial_id": "NCT87654321",
+    "title": "Immunotherapy for Early-Stage Breast Cancer",
+    "phase": "Phase II",
+    "sponsor": "Cancer Treatment Centers",
+    "location": "Boston, MA; New York, NY; Philadelphia, PA",
+    "status": "Recruiting",
+    "condition": "Breast Cancer",
+    "eligibility_criteria": "Inclusion Criteria: Female patients aged 18-70; Histologically confirmed breast cancer Stage I-III; ECOG performance status 0-1; Adequate organ function. Exclusion Criteria: Metastatic disease; Previous immunotherapy; Autoimmune disorders; Pregnancy or breastfeeding.",
+    "primary_outcome": "Pathological complete response rate",
+    "estimated_enrollment": 200,
+    "study_start_date": "2024-03-01",
+    "estimated_completion": "2026-03-01"
+  },
+  {
+    "trial_id": "NCT11223344",
+    "title": "Cognitive Enhancement Study for Alzheimer's Disease",
+    "phase": "Phase II",
+    "sponsor": "Neurological Research Foundation",
+    "location": "Los Angeles, CA; San Diego, CA; Phoenix, AZ",
+    "status": "Recruiting",
+    "condition": "Alzheimer's Disease",
+    "eligibility_criteria": "Inclusion Criteria: Age 55-85 years; Mild to moderate Alzheimer's disease; MMSE score 10-24; Stable medications for 3 months; Caregiver available. Exclusion Criteria: Other forms of dementia; Severe depression; Recent stroke; Inability to undergo MRI.",
+    "primary_outcome": "Change in cognitive assessment scores",
+    "estimated_enrollment": 150,
+    "study_start_date": "2024-02-15",
+    "estimated_completion": "2025-08-15"
+  },
+  {
+    "trial_id": "NCT55667788",
+    "title": "Asthma Control with Biologic Therapy",
+    "phase": "Phase III",
+    "sponsor": "Respiratory Medicine Institute",
+    "location": "Miami, FL; Tampa, FL; Orlando, FL",
+    "status": "Recruiting",
+    "condition": "Severe Asthma",
+    "eligibility_criteria": "Inclusion Criteria: Age 12-65 years; Severe persistent asthma; Elevated eosinophils or IgE; Poor control despite optimal therapy; FEV1 <80% predicted. Exclusion Criteria: COPD; Active smoking; Recent respiratory infection; Pregnancy.",
+    "primary_outcome": "Reduction in asthma exacerbations",
+    "estimated_enrollment": 300,
+    "study_start_date": "2024-01-15",
+    "estimated_completion": "2025-12-15"
+  },
+  {
+    "trial_id": "NCT99887766",
+    "title": "Cardiovascular Prevention in Diabetes",
+    "phase": "Phase IV",
+    "sponsor": "Cardiology Research Network",
+    "location": "Multiple US locations",
+    "status": "Recruiting",
+    "condition": "Type 2 Diabetes with Cardiovascular Risk",
+    "eligibility_criteria": "Inclusion Criteria: Age 40-80 years; Type 2 diabetes; High cardiovascular risk; Stable on current medications. Exclusion Criteria: Recent heart attack or stroke; Severe heart failure; Dialysis; Life expectancy <2 years.",
+    "primary_outcome": "Major adverse cardiovascular events",
+    "estimated_enrollment": 1000,
+    "study_start_date": "2023-09-01",
+    "estimated_completion": "2027-09-01"
+  }
+]
