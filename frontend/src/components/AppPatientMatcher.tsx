@@ -140,7 +140,7 @@ const AppPatientMatcher = () => {
   return (
     <div className="section-stack" style={{ gap: '2rem' }}>
       <section className="glass-card hero-card">
-        <h1 className="hero-title">Patient Trial Matcher</h1>
+        <h1 className="hero-title">TrialMaxxAI — Patient Matcher</h1>
         <p className="hero-sub" style={{ maxWidth: '700px', margin: '0 auto' }}>
           Upload patient data files or enter data manually to find matching clinical trials with AI-powered analysis.
         </p>

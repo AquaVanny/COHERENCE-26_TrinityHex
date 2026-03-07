@@ -1,6 +1,6 @@
 # 🏆 COHERENCE-26 Hackathon Submission
 
-## Clinical Trial Matching Platform
+## TrialMaxxAI
 **Team:** TrinityHex  
 **Event:** COHERENCE-26  
 **Repository:** [COHERENCE-26_TrinityHex](https://github.com/AquaVanny/COHERENCE-26_TrinityHex)

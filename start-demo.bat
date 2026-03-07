@@ -1,6 +1,6 @@
 @echo off
 echo ========================================
-echo Clinical Trial Matching Platform
+echo TrialMaxxAI
 echo Starting Demo Environment...
 echo ========================================
 echo.
@@ -14,7 +14,7 @@ start "React Frontend" cmd /k "cd frontend && npm run dev"
 
 echo.
 echo ========================================
-echo Demo servers starting!
+echo TrialMaxxAI - Demo servers starting!
 echo.
 echo Backend: http://localhost:5000
 echo Frontend: http://localhost:5173

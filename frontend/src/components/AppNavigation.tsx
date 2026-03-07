@@ -18,7 +18,7 @@ const AppNavigation = () => {
           <Activity className="h-[18px] w-[18px]" />
         </div>
         <span className="logo-text">
-          <span>Clinical Trial</span> Matcher
+          <span>TrialMaxx</span>AI
         </span>
       </Link>
 

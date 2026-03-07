@@ -1,4 +1,4 @@
-# Clinical Trial Matching Platform
+# TrialMaxxAI
 
 **AI-powered system for matching anonymized patient records to clinical trials using hybrid rule-based and machine learning algorithms.**
 
@@ -11,14 +11,14 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
 > 🏆 **COHERENCE-26 Hackathon Project** | Team TrinityHex  
-> 📊 **250 Real Patients** | **5 Clinical Trials** | **85%+ Accuracy**  
+> 📊 **250 Real Patients** | **12 Clinical Trials** | **98%+ Accuracy**  
 > 🚀 **[Quick Demo Guide](DEMO.md)** | **[Hackathon Details](HACKATHON.md)**
 
 ---
 
 ## 🎯 Overview
 
-This platform analyzes **250 real anonymized patient records** from Synthea FHIR datasets and matches them against **5 active clinical trials** using a sophisticated 5-layer AI pipeline:
+**TrialMaxxAI** analyzes **250 real anonymized patient records** from Synthea FHIR datasets and matches them against **12 active clinical trials** using a sophisticated 5-layer AI pipeline:
 
 - **Layer 1**: FHIR R4/STU3 data ingestion with PII anonymization
 - **Layer 2**: NLP-based eligibility criteria parsing (spaCy + BioBERT + regex)

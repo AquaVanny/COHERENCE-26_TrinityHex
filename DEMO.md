@@ -1,6 +1,6 @@
 # 🎯 Hackathon Demo Guide
 
-**Clinical Trial Matching Platform - Live Demonstration Script**
+**TrialMaxxAI - Live Demonstration Script**
 
 ---
 

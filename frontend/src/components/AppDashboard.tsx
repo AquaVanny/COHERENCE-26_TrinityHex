@@ -156,7 +156,7 @@ const AppDashboard = () => {
   return (
     <div className="section-stack">
       <section className="glass-card hero-card">
-        <h1 className="hero-title">Clinical Trial Matching Platform</h1>
+        <h1 className="hero-title">TrialMaxxAI</h1>
         <p className="hero-sub">
           AI-powered system matching {matchResult?.total_patients_available || 250} anonymized patient records to {matchResult?.total_trials_evaluated || 12} active clinical trials using hybrid rule-based and machine learning algorithms with geographic proximity filtering.
         </p>

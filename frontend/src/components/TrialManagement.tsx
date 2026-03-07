@@ -118,7 +118,7 @@ const TrialManagement = () => {
       <section className="glass-card hero-card">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="hero-title">Clinical Trial Management</h1>
+            <h1 className="hero-title">TrialMaxxAI — Trial Management</h1>
             <p className="hero-sub">
               Manage {trials.length} clinical trials in the system. Add, edit, or remove trials for patient matching.
             </p>

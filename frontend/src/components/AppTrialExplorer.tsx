@@ -139,7 +139,7 @@ const AppTrialExplorer = () => {
   return (
     <div className="section-stack">
       <section className="glass-card hero-card">
-        <h1 className="hero-title">Clinical Trial Explorer</h1>
+        <h1 className="hero-title">TrialMaxxAI — Trial Explorer</h1>
         <p className="hero-sub">Browse and search available clinical trials with detailed eligibility criteria.</p>
       </section>
 
