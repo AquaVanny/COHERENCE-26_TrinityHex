@@ -84,18 +84,18 @@
     "estimated_completion": "2027-06-01"
   },
   {
-    "trial_id": "NCT44556677",
-    "title": "SGLT2 Inhibitor for Chronic Kidney Disease",
-    "phase": "Phase III",
-    "sponsor": "Renal Research Consortium",
-    "location": "Dallas, TX; Denver, CO; Kansas City, MO",
-    "status": "Recruiting",
     "condition": "Chronic Kidney Disease",
     "eligibility_criteria": "Inclusion Criteria: Age 30-75 years; eGFR 20-60 mL/min; Albuminuria (UACR >= 200 mg/g); On stable ACE inhibitor or ARB therapy. Exclusion Criteria: Type 1 diabetes; Polycystic kidney disease; Prior kidney transplant; Active urinary tract infection.",
-    "primary_outcome": "Change in eGFR slope over 2 years",
+    "estimated_completion": "2026-10-15",
     "estimated_enrollment": 400,
+    "location": "Dallas, TX; Denver, CO; Kansas City, MO",
+    "phase": "Phase III",
+    "primary_outcome": "Change in eGFR slope over 2 years",
+    "sponsor": "Renal Research Consortium",
+    "status": "Recruiting",
     "study_start_date": "2024-04-15",
-    "estimated_completion": "2026-10-15"
+    "title": "SGLT2 Inhibitor for Chronic Kidney Disease",
+    "trial_id": "NCT44556677"
   },
   {
     "trial_id": "NCT66778899",

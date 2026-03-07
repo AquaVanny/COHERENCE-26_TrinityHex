@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom'
-import { Activity, Users, Search, Home } from 'lucide-react'
+import { Activity, Users, Search, Home, Settings } from 'lucide-react'
 
 const AppNavigation = () => {
   const location = useLocation()
@@ -7,7 +7,8 @@ const AppNavigation = () => {
   const navItems = [
     { path: '/', label: 'Dashboard', icon: Home },
     { path: '/matcher', label: 'Patient Matcher', icon: Users },
-    { path: '/trials', label: 'Trial Explorer', icon: Search }
+    { path: '/trials', label: 'Trial Explorer', icon: Search },
+    { path: '/manage-trials', label: 'Manage Trials', icon: Settings }
   ]
 
   return (

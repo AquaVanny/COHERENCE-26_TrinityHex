@@ -6,6 +6,7 @@ Score Fusion: 0.6 × Rule Score + 0.4 × ML Score (hard exclusion overrides).
 """
 
 import re
+import os
 import numpy as np
 from typing import Dict, List, Any, Optional, Tuple
 from datetime import datetime
@@ -416,13 +417,59 @@ class MLScorer:
         'age', 'gender_match', 'num_diagnoses', 'num_medications',
         'has_lab_results', 'num_lab_values', 'condition_overlap',
         'medication_overlap', 'num_inclusion', 'num_exclusion',
-        'age_in_range', 'has_vital_signs', 'missing_data_count'
+        'age_in_range', 'has_vital_signs', 'missing_data_count',
+        'semantic_similarity'  # NLP embedding feature
     ]
 
-    def __init__(self):
+    def __init__(self, model_path: str = None, use_embeddings: bool = True):
         self.model = None
+        self.use_embeddings = use_embeddings
+        self.embedding_extractor = None
+        
+        # Initialize embedding extractor if enabled
+        if use_embeddings:
+            try:
+                from models.embedding_extractor import get_embedding_extractor
+                self.embedding_extractor = get_embedding_extractor()
+            except Exception as e:
+                print(f"⚠ Failed to load embedding extractor: {e}")
+                self.embedding_extractor = None
         self._trained = False
-        self._build_model()
+        self._model_source = 'synthetic'
+        
+        # Skip model initialization if requested (for training script)
+        if model_path == '__skip__':
+            return
+        
+        # Try to load pre-trained model first
+        if model_path is None:
+            model_path = os.path.join(os.path.dirname(__file__), 'trained_model.pkl')
+        
+        if os.path.exists(model_path):
+            self._load_trained_model(model_path)
+        else:
+            self._build_model()
+
+    def _load_trained_model(self, model_path: str):
+        """Load pre-trained model from disk."""
+        try:
+            import pickle
+            with open(model_path, 'rb') as f:
+                model_data = pickle.load(f)
+            
+            self.model = model_data['model']
+            self._trained = True
+            self._model_source = 'synthea_trained'
+            print(f"✓ Loaded trained model from {model_path}")
+            
+            metrics = model_data.get('metrics', {})
+            if metrics:
+                print(f"  Model accuracy: {metrics.get('val_accuracy', 0):.3f}")
+                print(f"  Model AUC: {metrics.get('val_auc', 0):.3f}")
+        except Exception as e:
+            print(f"⚠ Failed to load trained model: {e}")
+            print("  Falling back to synthetic training...")
+            self._build_model()
 
     def _build_model(self):
         """Initialize and pre-train on synthetic data."""
@@ -444,6 +491,7 @@ class MLScorer:
 
         # Train on synthetic data so the model is ready
         self._train_synthetic()
+        self._model_source = 'synthetic'
 
     def _train_synthetic(self):
         """Generate synthetic training data and fit the model."""
@@ -590,6 +638,16 @@ class MLScorer:
         key_fields = ['age', 'gender', 'diagnosis', 'medications', 'lab_results']
         missing = sum(1 for f in key_fields if not patient.get(f))
         features['missing_data_count'] = float(missing)
+
+        # Semantic similarity from NLP embeddings
+        if self.embedding_extractor is not None:
+            try:
+                emb_features = self.embedding_extractor.extract_embedding_features(patient, trial)
+                features['semantic_similarity'] = emb_features.get('semantic_similarity', 0.0)
+            except Exception as e:
+                features['semantic_similarity'] = 0.0
+        else:
+            features['semantic_similarity'] = 0.0
 
         return features
 

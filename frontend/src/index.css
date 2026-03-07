@@ -71,9 +71,9 @@ select {
 .app-main {
   position: relative;
   z-index: 1;
-  max-width: 860px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 44px 24px 80px;
+  padding: 3rem 2rem 5rem;
 }
 
 .orb { position: fixed; border-radius: 50%; filter: blur(80px); pointer-events: none; z-index: 0; opacity: 0.45; }
@@ -205,7 +205,7 @@ select {
 }
 
 .hero-card {
-  padding: 40px 44px;
+  padding: 3rem 3rem;
   text-align: center;
   animation: riseUp 0.6s cubic-bezier(0.22,1,0.36,1) both;
 }
@@ -234,19 +234,19 @@ select {
 .section-stack {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 1.5rem;
 }
 
 .card-body {
-  padding: 28px 32px 32px;
+  padding: 2rem 2.5rem;
 }
 
 .card-header-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
-  padding: 22px 32px;
+  gap: 1rem;
+  padding: 1.75rem 2.5rem;
   border-bottom: 1px solid var(--border);
 }
 

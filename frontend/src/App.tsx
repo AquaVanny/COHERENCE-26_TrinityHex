@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import AppDashboard from './components/AppDashboard'
 import AppPatientMatcher from './components/AppPatientMatcher'
 import AppTrialExplorer from './components/AppTrialExplorer'
+import TrialManagement from './components/TrialManagement'
 import AppNavigation from './components/AppNavigation'
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
             <Route path="/" element={<AppDashboard />} />
             <Route path="/matcher" element={<AppPatientMatcher />} />
             <Route path="/trials" element={<AppTrialExplorer />} />
+            <Route path="/manage-trials" element={<TrialManagement />} />
           </Routes>
         </main>
       </div>

@@ -206,5 +206,133 @@
   "greenfield, massachusetts": [
     42.5876342,
     -72.6002068
+  ],
+  "holliston, massachusetts": [
+    42.2000966,
+    -71.4245049
+  ],
+  "lynn, massachusetts": [
+    42.466763,
+    -70.9494939
+  ],
+  "quincy, massachusetts": [
+    42.2509914,
+    -71.0037374
+  ],
+  "brookline, massachusetts": [
+    42.332918,
+    -71.1187829
+  ],
+  "foxborough, massachusetts": [
+    42.0653768,
+    -71.2478308
+  ],
+  "springfield, massachusetts": [
+    42.1018764,
+    -72.5886727
+  ],
+  "west springfield, massachusetts": [
+    42.105237,
+    -72.6213712
+  ],
+  "bourne, massachusetts": [
+    41.7412166,
+    -70.5989196
+  ],
+  "lawrence, massachusetts": [
+    42.7070354,
+    -71.1631137
+  ],
+  "raynham center, massachusetts": [
+    41.934712,
+    -71.0435075
+  ],
+  "braintree, massachusetts": [
+    42.2205956,
+    -71.0041229
+  ],
+  "westfield, massachusetts": [
+    42.1205411,
+    -72.7489158
+  ],
+  "somerville, massachusetts": [
+    42.3875968,
+    -71.0994968
+  ],
+  "belmont, massachusetts": [
+    42.3959296,
+    -71.1786655
+  ],
+  "westwood, massachusetts": [
+    42.2186913,
+    -71.2233829
+  ],
+  "whitman, massachusetts": [
+    42.0806617,
+    -70.935599
+  ],
+  "revere, massachusetts": [
+    42.4084302,
+    -71.0119948
+  ],
+  "newbury, massachusetts": [
+    42.7664975,
+    -70.8458022
+  ],
+  "needham, massachusetts": [
+    42.2802645,
+    -71.2360624
+  ],
+  "hudson, massachusetts": [
+    42.3913503,
+    -71.5676895
+  ],
+  "holyoke, massachusetts": [
+    42.2071184,
+    -72.6075851
+  ],
+  "new bedford, massachusetts": [
+    41.6362152,
+    -70.934205
+  ],
+  "shirley, massachusetts": [
+    42.5438051,
+    -71.6497972
+  ],
+  "gloucester, massachusetts": [
+    42.6153595,
+    -70.6624608
+  ],
+  "southbridge, massachusetts": [
+    42.0750465,
+    -72.0337376
+  ],
+  "cambridge, massachusetts": [
+    42.3656347,
+    -71.1040018
+  ],
+  "canton, massachusetts": [
+    42.1584324,
+    -71.1447732
+  ],
+  "billerica, massachusetts": [
+    42.5584264,
+    -71.268947
+  ],
+  "sudbury, massachusetts": [
+    42.3834278,
+    -71.4161725
+  ],
+  "newton, massachusetts": [
+    42.3300435,
+    -71.194862
+  ],
+  "middleborough, massachusetts": [
+    41.8931576,
+    -70.9111517
+  ],
+  "northborough, massachusetts": [
+    42.3196015,
+    -71.6422408
   ]
 }

@@ -1003,6 +1003,122 @@ def v2_nearby_trials():
         }), 500
 
 
+@app.route('/api/v2/trials', methods=['GET', 'POST', 'PUT', 'DELETE'])
+def v2_manage_trials():
+    """
+    Manage clinical trials - CRUD operations.
+    GET: List all trials
+    POST: Create new trial
+    PUT: Update existing trial
+    DELETE: Delete trial by ID
+    """
+    trials_file = os.path.join(os.path.dirname(__file__), 'data', 'sample_trials.json')
+    
+    try:
+        # Load existing trials
+        with open(trials_file, 'r') as f:
+            trials = json.load(f)
+        
+        if request.method == 'GET':
+            # Return all trials
+            return jsonify({
+                'total_trials': len(trials),
+                'trials': trials
+            })
+        
+        elif request.method == 'POST':
+            # Create new trial
+            new_trial = request.json
+            
+            # Validate required fields
+            required_fields = ['trial_id', 'title', 'phase', 'sponsor', 'location', 
+                             'status', 'condition', 'eligibility_criteria']
+            missing_fields = [f for f in required_fields if not new_trial.get(f)]
+            
+            if missing_fields:
+                return jsonify({
+                    'error': 'Missing required fields',
+                    'missing_fields': missing_fields
+                }), 400
+            
+            # Check for duplicate trial_id
+            if any(t['trial_id'] == new_trial['trial_id'] for t in trials):
+                return jsonify({
+                    'error': 'Trial ID already exists',
+                    'trial_id': new_trial['trial_id']
+                }), 409
+            
+            # Add trial
+            trials.append(new_trial)
+            
+            # Save to file
+            with open(trials_file, 'w') as f:
+                json.dump(trials, f, indent=2)
+            
+            return jsonify({
+                'message': 'Trial created successfully',
+                'trial': new_trial,
+                'total_trials': len(trials)
+            }), 201
+        
+        elif request.method == 'PUT':
+            # Update existing trial
+            updated_trial = request.json
+            trial_id = updated_trial.get('trial_id')
+            
+            if not trial_id:
+                return jsonify({'error': 'trial_id is required'}), 400
+            
+            # Find and update trial
+            trial_index = next((i for i, t in enumerate(trials) if t['trial_id'] == trial_id), None)
+            
+            if trial_index is None:
+                return jsonify({'error': 'Trial not found', 'trial_id': trial_id}), 404
+            
+            trials[trial_index] = updated_trial
+            
+            # Save to file
+            with open(trials_file, 'w') as f:
+                json.dump(trials, f, indent=2)
+            
+            return jsonify({
+                'message': 'Trial updated successfully',
+                'trial': updated_trial
+            })
+        
+        elif request.method == 'DELETE':
+            # Delete trial
+            trial_id = request.args.get('trial_id')
+            
+            if not trial_id:
+                return jsonify({'error': 'trial_id parameter is required'}), 400
+            
+            # Find and remove trial
+            trial_index = next((i for i, t in enumerate(trials) if t['trial_id'] == trial_id), None)
+            
+            if trial_index is None:
+                return jsonify({'error': 'Trial not found', 'trial_id': trial_id}), 404
+            
+            deleted_trial = trials.pop(trial_index)
+            
+            # Save to file
+            with open(trials_file, 'w') as f:
+                json.dump(trials, f, indent=2)
+            
+            return jsonify({
+                'message': 'Trial deleted successfully',
+                'deleted_trial': deleted_trial,
+                'total_trials': len(trials)
+            })
+    
+    except Exception as e:
+        return jsonify({
+            'error': 'Trial management failed',
+            'message': str(e),
+            'traceback': traceback.format_exc() if app.config['DEBUG'] else None
+        }), 500
+
+
 @app.route('/api/v2/patients', methods=['GET'])
 def v2_get_patients():
     """Get list of available patients (anonymized) for selection."""
